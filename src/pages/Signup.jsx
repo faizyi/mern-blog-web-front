@@ -1,12 +1,14 @@
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
+import { SignupHook } from '@/customHooks/user/signup'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
 export const Signup = () => {
+  const { register, handleSubmit, errors, onSubmit } = SignupHook()
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
+    <div className="flex items-center justify-center min-h-screen p-4">
       <Card className={"w-full max-w-md shadow-lg"}>
         <CardHeader>
           <CardTitle>
@@ -14,35 +16,40 @@ export const Signup = () => {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <form>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div>
               <label htmlFor="" className="block text-sm font-medium text-gray-700">UserName</label>
               <Input
               type={"text"}
-              placeholder="UserName"
-              name={"name"}
-              required
+              placeholder="John Doe"
+              {...register("username", { required: true })}
+              // required
               />
+              {errors.username && <p className='text-red-500'>Username is required</p>}
             </div>
             <div>
               <label htmlFor="" className="block text-sm font-medium text-gray-700">Your Email</label>
               <Input
               type={"email"}
               placeholder="you@example.com"
-              name={"email"}
-              required
+              {...register("email", { required: true })}
+              // required
               />
+              {errors.email && <p className='text-red-500'>Email is required</p>}
             </div>
             <div>
               <label htmlFor="" className="block text-sm font-medium text-gray-700">Your Password</label>
               <Input
               type={"password"}
               placeholder="••••••••"
-              name={"password"}
-              required
+              {...register("password", { required: true })}
+              // required
+              minLength={6}
               />
+              {errors.password && <p className='text-red-500'>Password is required</p>}
             </div>
-            <Button type={"submit"} className={"mt-4 w-full bg-black text-white cursor-pointer hover:bg-black/80"}>Signup</Button>
+            <Button type={"submit"} 
+            className={"mt-4 w-full bg-black text-white cursor-pointer hover:bg-black/80"}>Signup</Button>
           </form>
           <p>Already have an account?</p>
           <Link to={"/login"}>
