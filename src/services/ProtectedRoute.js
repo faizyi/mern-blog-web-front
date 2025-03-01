@@ -1,12 +1,11 @@
-// import { useAuth } from '@/useContext/AuthProvider'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export const ProtectedRoute = ({children}) => {
     const navigate = useNavigate();
-    const user = localStorage.getItem('authToken');
+    const user = localStorage.getItem('user');
     useEffect(()=>{
       if(!user) {navigate("/login")}
     },[user, navigate]);
-    return children
+    return user ? children : null
 }

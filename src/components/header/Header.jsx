@@ -1,10 +1,11 @@
 import React from 'react'
 import { Button } from '../ui/button'
 import { Link } from 'react-router-dom'
-import { useAuth } from '@/useContext/AuthProvider'
+import { SignupHook } from '@/customHooks/user/signup';
 
 export const Header = () => {
-  const user = localStorage.getItem('authToken');
+  const user = localStorage.getItem('user');
+  const {handleLogout} = SignupHook();
   return (
     <header className="w-full bg-white shadow-md p-4 flex justify-between items-center fixed top-0 z-50">
         <Link to={"/"}><h1 className=''>My Blog</h1></Link>
@@ -14,7 +15,7 @@ export const Header = () => {
             <Link to="/user/create/blog"><Button variant="outline">Create Blog</Button></Link>
             <Link to="/user/profile"><Button variant="outline">Profile</Button></Link>
             <Button 
-            // onClick={handleLogout}
+            onClick={handleLogout}
              className="bg-black text-white">Logout</Button>
           </div>
         ) : (
