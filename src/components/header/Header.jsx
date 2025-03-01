@@ -17,32 +17,38 @@ export const Header = () => {
           My Blog
         </h1>
       </Link>
-
+      <div className="sm:flex md:hidden lg:hidden">
+        {/* <SidebarDrawer /> */}
+        <h1>hh</h1>
+      </div>
+        <div className="hidden sm:hidden md:flex lg:flex items-center gap-4">
       {/* Navigation */}
       <nav className="flex items-center gap-4">
-      <BlogSerach/>
+        <BlogSerach />
+        <Link to="/">
+        <Button variant="outline" className="px-4 py-2">Home</Button>
+      </Link>
         {user ? (
-          <div className="flex items-center gap-4">
-            <Link to="/">
-              <Button variant="outline" className="px-4 py-2">Home</Button>
-            </Link>
+          <div className="flex items-center gap-4 ">
             <Link to="/user/create/blog">
               <Button variant="outline" className="px-4 py-2">Create Blog</Button>
             </Link>
-            <UserProfile handleLogout={handleLogout}/>
+            <UserProfile handleLogout={handleLogout} />
           </div>
         ) : (
-          <Link to="/login">
-            <Button
-              variant="outline"
-              className="bg-black text-white px-5 py-2 rounded-md hover:bg-black/80 transition duration-200"
-            >
-              Login
-            </Button>
-          </Link>
+            <Link to="/login">
+              <Button
+                variant="outline"
+                className="bg-black text-white px-5 py-2 rounded-md
+               hover:bg-black/80 transition duration-200"
+              >
+                Login
+              </Button>
+            </Link>
         )}
-        
+
       </nav>
+        </div>
     </header>
   );
 };

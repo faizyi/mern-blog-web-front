@@ -5,7 +5,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 export const Hero = () => {
   return (
     <section className="relative w-full h-[400px] overflow-hidden">
-        <Carousel className="w-full h-full flex bg-black" 
+        <Carousel className="w-full h-full flex" 
         orientation='horizontal'
         opts={{ loop: true }}
         // ref={carouselRef}
