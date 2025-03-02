@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { UserProfile } from "../userProfile/UserProfile";
 import { SignupHook } from "@/customHooks/user/signup";
 import { BlogSerach } from "../blogSearch/blogSerach";
+import { Drawer } from "../drawer/drawer";
 
 export const Header = () => {
   const user = localStorage.getItem("user");
@@ -19,7 +20,7 @@ export const Header = () => {
       </Link>
       <div className="sm:flex md:hidden lg:hidden">
         {/* <SidebarDrawer /> */}
-        <h1>hh</h1>
+        <Drawer/>
       </div>
         <div className="hidden sm:hidden md:flex lg:flex items-center gap-4">
       {/* Navigation */}
