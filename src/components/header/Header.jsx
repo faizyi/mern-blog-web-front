@@ -18,14 +18,15 @@ export const Header = () => {
           My Blog
         </h1>
       </Link>
+      <div className="flex items-center gap-4">
+        <BlogSerach />
       <div className="sm:flex md:hidden lg:hidden">
         {/* <SidebarDrawer /> */}
         <Drawer/>
       </div>
         <div className="hidden sm:hidden md:flex lg:flex items-center gap-4">
-      {/* Navigation */}
       <nav className="flex items-center gap-4">
-        <BlogSerach />
+      {/* Navigation */}
         <Link to="/">
         <Button variant="outline" className="px-4 py-2">Home</Button>
       </Link>
@@ -49,6 +50,7 @@ export const Header = () => {
         )}
 
       </nav>
+        </div>
         </div>
     </header>
   );
