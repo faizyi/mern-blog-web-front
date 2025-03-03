@@ -29,7 +29,9 @@ export const logout = async ()=>{
 
 export const getUserProfile = async () =>{
     try {
-        const res = await axiosHandler.get("/user/profile")
+        const res = await axiosHandler.get("/user/profile",{
+            withCredentials: true
+        })
         return res
     } catch (error) {
         return error

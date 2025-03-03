@@ -1,3 +1,4 @@
+import { queryClient } from '@/services/react-query/userQuery';
 import { logout, signup } from '@/services/user';
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom';
@@ -20,8 +21,9 @@ export const SignupHook = () => {
     }
       const handleLogout = async () => {
           const res = await logout();
-          console.log(res);
           localStorage.removeItem('user');
+          queryClient.removeQueries(['userInfo']);
+          navigate("/");
       }
   return {
     register,

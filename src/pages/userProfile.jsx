@@ -2,12 +2,10 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
-import { UserProfileHook } from '@/customHooks/user/userProfile'
-import React, { useEffect } from 'react'
+import { userProfileQuery } from '@/services/react-query/userQuery'
 
 export const UserProfile = () => {
-  const { user } = UserProfileHook();
-  console.log(user);
+  const {data:userInfo} = userProfileQuery();
   return (
     <div className="flex justify-center items-center mt-14 bg-gray-100 p-6">
       <Card className="w-full max-w-lg bg-white shadow-lg rounded-lg p-6">
@@ -19,7 +17,7 @@ export const UserProfile = () => {
           {/* Avatar Section */}
           <div className="flex flex-col items-center">
             <Avatar className="w-20 h-20 border border-gray-300">
-              <AvatarImage src={user?.profilePic} />
+              <AvatarImage src={userInfo?.data.userInfo?.profilePic} />
               <AvatarFallback>JD</AvatarFallback>
             </Avatar>
             <Button variant="outline" size="sm" className="mt-2">
@@ -30,9 +28,9 @@ export const UserProfile = () => {
           {/* Name Input */}
           <div>
             <Input
-              // id="name"
+              id="name"
               type="text"
-              value={user?.username}
+              value={userInfo?.data.userInfo?.username}
               // onChange={(e) => setName(e.target.value)}
               className="mt-2"
             />
@@ -43,7 +41,7 @@ export const UserProfile = () => {
             <Input 
               id="email"
               type="email"
-              value={user?.email}
+              value={userInfo?.data.userInfo?.email}
               // onChange={(e) => setEmail(e.target.value)}
               className="mt-2"
             />

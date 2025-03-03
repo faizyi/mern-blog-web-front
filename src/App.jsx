@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Header } from './components/header/Header'
 import { Home } from './pages/Home'
 import { Signup } from './pages/Signup'
@@ -8,9 +9,14 @@ import { UserProfile } from './pages/userProfile'
 import { ProtectedRoute } from './services/ProtectedRoute'
 import { CreateBlog } from './pages/CreateBlog'
 import { PublicRoute } from './services/PublicRoute'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { queryClient } from './services/react-query/userQuery'
+
+
 function App() {
   return (
     <div>
+      <QueryClientProvider client={queryClient}>
       <Header/>
       <Routes>
         <Route path='*' element={<Home/>}/>
@@ -20,6 +26,8 @@ function App() {
         <Route path='/user/create/blog' element={<ProtectedRoute><CreateBlog/></ProtectedRoute>}/>
         <Route path='/user/profile' element={<ProtectedRoute><UserProfile/></ProtectedRoute>}/>
       </Routes>
+      <ReactQueryDevtools initialIsOpen={false} position='right'/>
+      </QueryClientProvider>
     </div>
   )
 }
