@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
-import { UserProfile } from "../userProfile/UserProfile";
+import { UserProfile } from "../../../src/components/userProfile/userProfile";
 import { SignupHook } from "@/customHooks/user/signup";
 import { BlogSerach } from "../blogSearch/blogSerach";
 import { Drawer } from "../drawer/drawer";
