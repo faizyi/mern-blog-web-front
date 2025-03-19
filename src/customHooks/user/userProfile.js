@@ -8,15 +8,17 @@ export const UserProfileHook = () => {
     useEffect(()=>{
         const fetchUserProfile = async () => {
             try {
-                const res = await getUserProfile();
-                // console.log(res);
+                const res = await getUserProfile(navigate);
+                console.log(res);
                 if(res.response?.data.message == "Unauthorized") {
                     localStorage.removeItem("user");
                     navigate("/login");
                     // return
                 }
-                setUser(res.data?.userInfo);
+                setUser(res?.data?.userInfo);
             } catch (error) {
+                localStorage.removeItem("user");
+                navigate("/login")
                 console.log(error);
             }
         }

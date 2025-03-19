@@ -27,13 +27,17 @@ export const logout = async ()=>{
     }
 }
 
-export const getUserProfile = async () =>{
+export const getUserProfile = async (navigate) =>{
     try {
         const res = await axiosHandler.get("/user/profile",{
             withCredentials: true
         })
+        console.log(res);
+        
         return res
     } catch (error) {
+        localStorage.removeItem("user");
+        // navigate("/login")
         return error
     }
 }

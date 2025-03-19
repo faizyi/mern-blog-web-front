@@ -7,7 +7,7 @@ import { userProfileQuery } from '@/services/react-query/userQuery'
 export const UserProfile = () => {
   const {data:userInfo} = userProfileQuery();
   return (
-    <div className="flex justify-center items-center mt-14 bg-gray-100 p-6">
+    <div className="flex justify-center items-center mt-14 p-6">
       <Card className="w-full max-w-lg bg-white shadow-lg rounded-lg p-6">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold text-gray-800">User Profile</CardTitle>
@@ -16,6 +16,8 @@ export const UserProfile = () => {
           
           {/* Avatar Section */}
           <div className="flex flex-col items-center">
+            <input id='profilePic' type="file" accept="image/*" className='hidden' name='profilePic' />
+            <label htmlFor="profilePic">
             <Avatar className="w-20 h-20 border border-gray-300">
               <AvatarImage src={userInfo?.data.userInfo?.profilePic} />
               <AvatarFallback>JD</AvatarFallback>
@@ -23,6 +25,7 @@ export const UserProfile = () => {
             <Button variant="outline" size="sm" className="mt-2">
               Change Avatar
             </Button>
+            </label>
           </div>
 
           {/* Name Input */}

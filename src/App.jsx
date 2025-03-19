@@ -11,6 +11,7 @@ import { CreateBlog } from './pages/CreateBlog'
 import { PublicRoute } from './services/PublicRoute'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { queryClient } from './services/react-query/userQuery'
+import { Footer } from './components/footer/Footer'
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
       </Routes>
       <ReactQueryDevtools initialIsOpen={false} position='right'/>
       </QueryClientProvider>
+      <Footer/>
     </div>
   )
 }

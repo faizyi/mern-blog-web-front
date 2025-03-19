@@ -5,10 +5,9 @@ import React from 'react'
 
 export const Home = () => {
   return (
-    <div className="min-h-screen mt-19">
+    <div className="min-h-screen mt-19" id='container'>
         <Hero/>
         <AllBlogs/>
-        <Footer/>
     </div>
   )
 }

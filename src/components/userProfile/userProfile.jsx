@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "../ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,7 +10,7 @@ import {
 } from "../ui/dropdown-menu";
 import { Link } from "react-router-dom";
 
-export const UserProfile = ({handleLogout}) => {
+export const UserProfile = ({ handleLogout }) => {
   return (
     <div className="relative">
       <DropdownMenu>
@@ -25,19 +21,21 @@ export const UserProfile = ({handleLogout}) => {
           </Avatar>
         </DropdownMenuTrigger>
 
-        <DropdownMenuContent className="w-18 mr-4 bg-white shadow-lg rounded-lg p-2 mt-2 border border-gray-200">
-          <DropdownMenuLabel className="text-gray-900 font-semibold">
+        {/* Ensure dropdown does not hide the scrollbar */}
+        <DropdownMenuContent className="w-40 bg-white shadow-lg rounded-lg mt-2 border border-gray-200 overflow-visible">
+          <DropdownMenuLabel className="text-gray-900 font-semibold px-4 py-2">
             My Account
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
           <Link to="/user/profile">
-          <DropdownMenuItem className="hover:bg-gray-100 px-3 py-2 rounded-md cursor-pointer transition duration-200">
-            Profile
-          </DropdownMenuItem>
+            <DropdownMenuItem className="hover:bg-gray-100 px-4 py-2 cursor-pointer transition duration-200">
+              Profile
+            </DropdownMenuItem>
           </Link>
           <DropdownMenuItem
-          onClick={handleLogout}
-           className="hover:bg-gray-100 px-3 py-2 rounded-md cursor-pointer transition duration-200">
+            onClick={handleLogout}
+            className="hover:bg-gray-100 px-4 py-2 cursor-pointer transition duration-200"
+          >
             Logout
           </DropdownMenuItem>
         </DropdownMenuContent>
