@@ -39,7 +39,7 @@ export const Header = () => {
 
               {user ? (
                 <div className="flex items-center gap-4">
-                  <Link to="/user/create/blog">
+                  <Link to="/user/create-blog">
                     <Button variant="outline" className="px-4 py-2">
                       Create Blog
                     </Button>

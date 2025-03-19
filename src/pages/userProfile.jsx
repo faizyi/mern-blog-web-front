@@ -34,7 +34,7 @@ export const UserProfile = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen p-6">
-      <Card className="w-full max-w-3xl bg-white shadow-lg rounded-lg p-6">
+      <Card className="w-full max-w-5xl bg-white shadow-lg rounded-lg p-6">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold text-gray-800">User Profile</CardTitle>
         </CardHeader>

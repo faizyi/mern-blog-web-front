@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import React, { useState } from "react";
 
 
@@ -24,8 +25,8 @@ export const CreateBlog = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen p-6 bg-gray-50">
-      <Card className="w-full max-w-2xl bg-white shadow-lg rounded-lg p-6">
+    <div className="flex justify-center items-center min-h-screen p-6">
+      <Card className="w-full max-w-5xl bg-white shadow-lg rounded-lg p-6">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold text-gray-800">Create a Blog</CardTitle>
         </CardHeader>
@@ -36,9 +37,9 @@ export const CreateBlog = () => {
             <input id="blogImage" type="file" accept="image/*" className="hidden" onChange={handleImageChange} />
             <label htmlFor="blogImage" className="cursor-pointer">
               {preview ? (
-                <img src={preview} alt="Preview" className="w-full h-40 object-cover rounded-md border" />
+                <img src={preview} alt="Preview" className="w-full h-40 object-cover  rounded-md border" />
               ) : (
-                <div className="w-full h-40 flex items-center justify-center border rounded-md text-gray-500">
+                <div className="w-full h-40 flex items-center p-4 justify-center border rounded-md text-gray-500">
                   Click to Upload Image
                 </div>
               )}

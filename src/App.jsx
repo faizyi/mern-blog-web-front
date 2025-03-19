@@ -28,7 +28,7 @@ function App() {
         <Route path='/signup' element={<PublicRoute><Signup/></PublicRoute>}/>
         <Route path='/login' element={<PublicRoute><Login/></PublicRoute>}/>
         <Route path='/user/forgot-password' element={<PublicRoute><ResetPassword/></PublicRoute>}/>
-        <Route path='/user/create/blog' element={<ProtectedRoute><CreateBlog/></ProtectedRoute>}/>
+        <Route path='/user/create-blog' element={<ProtectedRoute><CreateBlog/></ProtectedRoute>}/>
         <Route path='/user/profile' element={<ProtectedRoute><UserProfile/></ProtectedRoute>}/>
       </Routes>
       <ReactQueryDevtools initialIsOpen={false} position='right'/>
