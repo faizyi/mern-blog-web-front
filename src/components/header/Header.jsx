@@ -50,7 +50,7 @@ export const Header = () => {
                 <Link to="/login">
                   <Button
                     variant="outline"
-                    className="bg-black text-white px-5 py-2 rounded-md hover:bg-black/80 transition duration-200"
+                    className="bg-black text-white px-5 py-2 rounded-md hover:bg-white transition duration-200"
                   >
                     Login
                   </Button>

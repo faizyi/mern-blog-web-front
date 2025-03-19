@@ -12,6 +12,9 @@ import { PublicRoute } from './services/PublicRoute'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { queryClient } from './services/react-query/userQuery'
 import { Footer } from './components/footer/Footer'
+import { ForgotPassword } from './pages/password/ForgotPassword'
+import { VerifyCode } from './pages/password/VerifyCode'
+import { ResetPassword } from './pages/password/ResetPassword'
 
 
 function App() {
@@ -24,6 +27,7 @@ function App() {
         <Route path='/' element={<Home/>}/>
         <Route path='/signup' element={<PublicRoute><Signup/></PublicRoute>}/>
         <Route path='/login' element={<PublicRoute><Login/></PublicRoute>}/>
+        <Route path='/user/forgot-password' element={<PublicRoute><ResetPassword/></PublicRoute>}/>
         <Route path='/user/create/blog' element={<ProtectedRoute><CreateBlog/></ProtectedRoute>}/>
         <Route path='/user/profile' element={<ProtectedRoute><UserProfile/></ProtectedRoute>}/>
       </Routes>

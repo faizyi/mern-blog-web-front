@@ -51,16 +51,11 @@ export const Signup = () => {
             <Button type={"submit"} 
             className={"mt-4 w-full bg-black text-white cursor-pointer hover:bg-black/80"}>Signup</Button>
           </form>
-          <p>Already have an account?</p>
-          <Link to={"/login"}>
-          <button
-            type="button"
-            // onClick={() => setIsLogin(!isLogin)}
-            className="text-blue-500 hover:underline ml-1"
-          >
-            Login
-          </button>
-          </Link>
+          <p className="mt-3 text-center">Already have an account?
+            <Link to="/login" className="text-blue-500 hover:underline ml-1">
+              Login
+            </Link>
+            </p>
         </CardContent>
       </Card>
       </div>
