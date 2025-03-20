@@ -9,11 +9,10 @@ export const UserProfileHook = () => {
         const fetchUserProfile = async () => {
             try {
                 const res = await getUserProfile(navigate);
-                console.log(res);
+                // console.log(res);
                 if(res.response?.data.message == "Unauthorized") {
                     localStorage.removeItem("user");
                     navigate("/login");
-                    // return
                 }
                 setUser(res?.data?.userInfo);
             } catch (error) {

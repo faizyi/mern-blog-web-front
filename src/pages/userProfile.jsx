@@ -7,10 +7,9 @@ import { userProfileQuery } from "@/services/react-query/userQuery";
 
 export const UserProfile = () => {
   const { data: userInfo } = userProfileQuery();
-
-  const [profilePic, setProfilePic] = useState(userInfo?.data.userInfo?.profilePic || "");
-  const [username, setUsername] = useState(userInfo?.data.userInfo?.username || "");
-  const [email, setEmail] = useState(userInfo?.data.userInfo?.email || "");
+  const [profilePic, setProfilePic] = useState(userInfo?.profilePic || "");
+  const [username, setUsername] = useState(userInfo?.username || "");
+  const [email, setEmail] = useState(userInfo?.email || "");
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
 
@@ -67,8 +66,8 @@ export const UserProfile = () => {
               <Input
                 id="name"
                 type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                value={username || userInfo?.username}
+                // onChange={(e) => setUsername(e.target.value)}
               />
             </div>
             <div>
@@ -76,7 +75,7 @@ export const UserProfile = () => {
               <Input
                 id="email"
                 type="email"
-                value={email}
+                value={email || userInfo?.email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>

@@ -32,7 +32,7 @@ export const getUserProfile = async (navigate) =>{
         const res = await axiosHandler.get("/user/profile",{
             withCredentials: true
         })
-        console.log(res);
+        // console.log(res);
         
         return res
     } catch (error) {
