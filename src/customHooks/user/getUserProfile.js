@@ -2,14 +2,13 @@ import { getUserProfile } from '@/services/user'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
-export const UserProfileHook = () => {
+export const GetUserProfileHook = () => {
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
     useEffect(()=>{
         const fetchUserProfile = async () => {
             try {
                 const res = await getUserProfile(navigate);
-                // console.log(res);
                 if(res.response?.data.message == "Unauthorized") {
                     localStorage.removeItem("user");
                     navigate("/login");

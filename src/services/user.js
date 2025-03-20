@@ -41,3 +41,15 @@ export const getUserProfile = async (navigate) =>{
         return error
     }
 }
+
+export const updateUserProfile = async (formData) =>{
+    try {
+        const res = await axiosHandler.put("/user/update-profile", formData, {
+            headers: {"Content-Type" : "multipart/form-data"}
+        });
+        console.log(res);
+        return res
+    } catch (error) {
+        return error
+    }
+}

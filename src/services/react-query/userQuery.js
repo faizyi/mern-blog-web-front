@@ -1,8 +1,7 @@
-import { useQuery } from '@tanstack/react-query';
-import { QueryClient} from '@tanstack/react-query'
-import { UserProfileHook } from '@/customHooks/user/userProfile';
+import { GetUserProfileHook } from '@/customHooks/user/getUserProfile';
+import { QueryClient, useQuery} from '@tanstack/react-query'
 export const userProfileQuery = () => {
-  const {user} = UserProfileHook();
+  const {user} = GetUserProfileHook();  
   return useQuery({
     queryKey: ["userInfo"],
     queryFn: async () => user,

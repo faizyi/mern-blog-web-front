@@ -3,33 +3,15 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { userProfileQuery } from "@/services/react-query/userQuery";
-
+import { UpdateUserProfileHook } from "@/customHooks/user/updateUserProfile";
 export const UserProfile = () => {
-  const { data: userInfo } = userProfileQuery();
-  const [profilePic, setProfilePic] = useState(userInfo?.profilePic || "");
-  const [username, setUsername] = useState(userInfo?.username || "");
-  const [email, setEmail] = useState(userInfo?.email || "");
-  const [currentPassword, setCurrentPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-
-  const handleProfilePicChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setProfilePic(URL.createObjectURL(file)); // Preview image
-    }
-  };
-
-  const handleUpdateProfile = () => {
-    console.log({
-      username,
-      email,
-      profilePic,
-      currentPassword,
-      newPassword,
-    });
-    // TODO: Call API to update profile
-  };
+  const [disable, setDisable] = useState(true);
+  const { userInfo, profilePic, username, email, 
+    currentPassword, newPassword, handleProfilePicChange, 
+    handleUpdateProfile, setCurrentPassword, setEmail, setUsername, 
+    setNewPassword, setProfilePic } = UpdateUserProfileHook();
+    console.log(userInfo);
+    
 
   return (
     <div className="flex justify-center items-center min-h-screen p-6">
@@ -43,20 +25,25 @@ export const UserProfile = () => {
           <div className="flex flex-col items-center">
             <input
               id="profilePic"
+              name="profilePic"
               type="file"
               accept="image/*"
               className="hidden"
-              onChange={handleProfilePicChange}
+              onChange={ (e) => {
+                handleProfilePicChange(e)
+                setDisable(false)
+              }}
             />
             <label htmlFor="profilePic" className="cursor-pointer">
+              {/* <img src={profilePic || `/userProfile/${userInfo?.profilePic}`} alt="" /> */}
               <Avatar className="w-24 h-24 border border-gray-300">
-                <AvatarImage src={profilePic} />
+                <AvatarImage  src={profilePic}/>
                 <AvatarFallback>JD</AvatarFallback>
               </Avatar>
             </label>
-            <Button variant="outline" size="sm" className="mt-2">
+            {/* <Button id variant="outline" size="sm" className="mt-2">
               Change Avatar
-            </Button>
+            </Button> */}
           </div>
 
           {/* User Info Form */}
@@ -67,7 +54,10 @@ export const UserProfile = () => {
                 id="name"
                 type="text"
                 value={username || userInfo?.username}
-                // onChange={(e) => setUsername(e.target.value)}
+                onChange={(e) => {
+                  setUsername(e.target.value) 
+                  setDisable(false)
+                }}
               />
             </div>
             <div>
@@ -76,7 +66,10 @@ export const UserProfile = () => {
                 id="email"
                 type="email"
                 value={email || userInfo?.email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => {
+                  setEmail(e.target.value)
+                  setDisable(false)
+                }}
               />
             </div>
           </div>
@@ -98,13 +91,17 @@ export const UserProfile = () => {
                 type="password"
                 placeholder="New password"
                 value={newPassword}
-                onChange={(e) => setNewPassword(e.target.value)}
+                onChange={(e) => {
+                  setNewPassword(e.target.value)
+                  setDisable(false)
+                }}
               />
             </div>
           </div>
 
           {/* Update Button */}
           <Button
+          disabled={disable}
             className="w-full bg-black text-white py-2 rounded-md hover:bg-black/80 transition duration-200"
             onClick={handleUpdateProfile}
           >
