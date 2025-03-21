@@ -1,17 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import React, { useState } from "react";
-
+import { ForgotPasswordHook } from "@/customHooks/user/forgotPassword";
 export const ForgotPassword = () => {
-//   const [email, setEmail] = useState("");
-
-//   const handleSendCode = (e) => {
-//     e.preventDefault();
-//     // TODO: Implement API call to send reset code
-//     console.log("Reset code sent to:", email);
-//   };
-
+  const {handleSendCode, email, setEmail} = ForgotPasswordHook();
   return (
     <div className="flex items-center justify-center min-h-screen p-4">
       <Card className="w-full max-w-md shadow-lg">
@@ -20,7 +12,7 @@ export const ForgotPassword = () => {
         </CardHeader>
         <CardContent>
           <form 
-        //   onSubmit={handleSendCode}
+          onSubmit={handleSendCode}
           >
             <label className="block text-sm font-medium text-gray-700">
               Enter your email
@@ -28,11 +20,12 @@ export const ForgotPassword = () => {
             <Input
               type="email"
               placeholder="you@example.com"
-            //   value={email}
-            //   onChange={(e) => setEmail(e.target.value)}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
-            <Button type="submit" className="mt-4 w-full bg-amber-400 text-black hover:bg-amber-300">
+            <Button
+             type="submit" className="mt-4 w-full bg-amber-400 text-black hover:bg-amber-300">
               Send Code
             </Button>
           </form>

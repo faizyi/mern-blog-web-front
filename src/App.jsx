@@ -27,9 +27,11 @@ function App() {
         <Route path='/' element={<Home/>}/>
         <Route path='/signup' element={<PublicRoute><Signup/></PublicRoute>}/>
         <Route path='/login' element={<PublicRoute><Login/></PublicRoute>}/>
-        <Route path='/user/forgot-password' element={<PublicRoute><ResetPassword/></PublicRoute>}/>
-        <Route path='/user/create-blog' element={<CreateBlog/>}/>
-        <Route path='/user/profile' element={<UserProfile/>}/>
+        <Route path='/forgot-password' element={<ForgotPassword/>}/>
+        {/* <Route path='/password/verify-code' element={<VerifyCode/>}/> */}
+        <Route path='/reset-password/:resetLink' element={<ResetPassword/>}/>
+        <Route path='/user/create-blog' element={<ProtectedRoute><CreateBlog/></ProtectedRoute>}/>
+        <Route path='/user/profile' element={<ProtectedRoute><UserProfile/></ProtectedRoute>}/>
       </Routes>
       <ReactQueryDevtools initialIsOpen={false} position='right'/>
       </QueryClientProvider>

@@ -53,3 +53,23 @@ export const updateUserProfile = async (formData) =>{
         return error
     }
 }
+
+export const forgotPassword = async (email) => {
+    try {
+        const res = await axiosHandler.post("/user/forgot-password",{ email});
+        console.log(res);
+        return res
+    } catch (error) {
+        return error
+    }
+}
+
+export const resetPassword = async (data) => {
+    try {
+        const res = await axiosHandler.post("/user/reset-password", data);
+        console.log(res);
+        return res
+    } catch (error) {
+        return error
+    }
+}
