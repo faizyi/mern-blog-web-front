@@ -46,7 +46,7 @@ export const ResetPassword = () => {
               required
             />
 
-            <Button type="submit" className="mt-4 w-full bg-black text-white hover:bg-black/80">
+            <Button type="submit" className="mt-4 w-full bg-amber-300 text-black hover:bg-amber-400">
               Reset Password
             </Button>
           </form>

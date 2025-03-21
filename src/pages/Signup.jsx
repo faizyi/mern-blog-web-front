@@ -49,7 +49,8 @@ export const Signup = () => {
               {errors.password && <p className='text-red-500'>Password is required</p>}
             </div>
             <Button type={"submit"} 
-            className={"mt-4 w-full bg-black text-white cursor-pointer hover:bg-black/80"}>Signup</Button>
+            className="mt-4 w-full bg-amber-300 text-black 
+            cursor-pointer hover:bg-amber-400 transition duration-200">Signup</Button>
           </form>
           <p className="mt-3 text-center">Already have an account?
             <Link to="/login" className="text-blue-500 hover:underline ml-1">

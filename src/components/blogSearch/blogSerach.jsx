@@ -9,8 +9,9 @@ export const BlogSerach = () => {
           placeholder="Search blogs..."
         //   value={query}
         //   onChange={handleSearch}
-          className="w-[150px] sm:w-[400px] md:w-[400px] lg:w-[500px] bg-transparent 
-          focus:outline-none text-gray-800 placeholder-gray-400"
+          className="w-[150px] sm:w-[400px] border-b-3 border-t-0 border-l-0 
+          border-r-0 md:w-[400px] lg:w-[500px] 
+           text-white placeholder-gray-400"
         />
     </div>
   )

@@ -4,8 +4,10 @@ import React, { useState } from 'react'
 
 export const UpdateUserProfileHook = () => {
     const { data: userInfo } = userProfileQuery();
+    console.log(userInfo);
+    
     const [profilePic, setProfilePic] = useState(userInfo?.profilePic || "");
-    const [username, setUsername] = useState(userInfo?.username || "");
+    const [username, setUsername] = useState(userInfo?.username);
     const [email, setEmail] = useState(userInfo?.email || "");
     const [currentPassword, setCurrentPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");

@@ -32,7 +32,7 @@ export const ForgotPassword = () => {
             //   onChange={(e) => setEmail(e.target.value)}
               required
             />
-            <Button type="submit" className="mt-4 w-full bg-black text-white hover:bg-black/80">
+            <Button type="submit" className="mt-4 w-full bg-amber-400 text-black hover:bg-amber-300">
               Send Code
             </Button>
           </form>

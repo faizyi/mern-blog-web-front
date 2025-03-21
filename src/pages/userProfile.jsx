@@ -14,7 +14,7 @@ export const UserProfile = () => {
     
 
   return (
-    <div className="flex justify-center items-center min-h-screen p-6">
+    <div className="flex justify-center mt-8 items-center min-h-screen p-6">
       <Card className="w-full max-w-5xl bg-white shadow-lg rounded-lg p-6">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold text-gray-800">User Profile</CardTitle>
@@ -37,7 +37,7 @@ export const UserProfile = () => {
             <label htmlFor="profilePic" className="cursor-pointer">
               {/* <img src={profilePic || `/userProfile/${userInfo?.profilePic}`} alt="" /> */}
               <Avatar className="w-24 h-24 border border-gray-300">
-                <AvatarImage  src={profilePic}/>
+                <AvatarImage  src={userInfo?.profilePic}/>
                 <AvatarFallback>JD</AvatarFallback>
               </Avatar>
             </label>
@@ -53,7 +53,7 @@ export const UserProfile = () => {
               <Input
                 id="name"
                 type="text"
-                value={username || userInfo?.username}
+                value={username}
                 onChange={(e) => {
                   setUsername(e.target.value) 
                   setDisable(false)
@@ -65,7 +65,7 @@ export const UserProfile = () => {
               <Input
                 id="email"
                 type="email"
-                value={email || userInfo?.email}
+                value={email}
                 onChange={(e) => {
                   setEmail(e.target.value)
                   setDisable(false)
@@ -102,7 +102,8 @@ export const UserProfile = () => {
           {/* Update Button */}
           <Button
           disabled={disable}
-            className="w-full bg-black text-white py-2 rounded-md hover:bg-black/80 transition duration-200"
+            className="w-full bg-amber-400 text-black  py-2 rounded-md hover:bg-amber-300
+            transition duration-200"
             onClick={handleUpdateProfile}
           >
             Save Changes

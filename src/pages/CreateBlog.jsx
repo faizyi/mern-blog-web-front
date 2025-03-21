@@ -25,7 +25,7 @@ export const CreateBlog = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen p-6">
+    <div className="flex justify-center  mt-12 items-center min-h-screen p-6">
       <Card className="w-full max-w-5xl bg-white shadow-lg rounded-lg p-6">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold text-gray-800">Create a Blog</CardTitle>
@@ -70,7 +70,8 @@ export const CreateBlog = () => {
 
           {/* Upload Button */}
           <Button 
-            className="w-full bg-black text-white py-2 rounded-md hover:bg-black/80 transition duration-200"
+            className="w-full bg-amber-300 text-black py-2 rounded-md hover:bg-amber-400 
+            transition duration-200"
             onClick={handleSubmit}
           >
             Publish Blog

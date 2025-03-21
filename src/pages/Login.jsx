@@ -52,7 +52,9 @@ export const Login = () => {
             </div>
 
             {/* Login Button */}
-            <Button type="submit" className="mt-4 w-full bg-black text-white cursor-pointer hover:bg-black/80">
+            <Button type="submit" 
+            className="mt-4 w-full bg-amber-300 text-black 
+            cursor-pointer hover:bg-amber-400 transition duration-200">
               Login
             </Button>
           </form>

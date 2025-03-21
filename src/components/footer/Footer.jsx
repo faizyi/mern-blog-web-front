@@ -2,7 +2,7 @@ import React from 'react'
 
 export const Footer = () => {
   return (
-    <footer className="py-6 mt-10">
+    <footer className="py-6 mt-10 border">
         <div className="container mx-auto text-center">
           <p className="text-sm">&copy; {new Date().getFullYear()} My Blog. All rights reserved.</p>
           <div className="flex justify-center gap-4 mt-4">
