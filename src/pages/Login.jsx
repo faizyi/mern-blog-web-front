@@ -5,10 +5,11 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { LoginHook } from '@/customHooks/user/login';
 import { AlertError } from '@/utils/AlertError';
-
+import { useSelector } from 'react-redux';
+import { LoadingSpinner } from '@/components/loader/Loader';
 export const Login = () => {
+  const loader = useSelector((state) => state.loader.isLoader);
   const { register, handleSubmit, errors, onSubmit, response, reset } = LoginHook();
-
   return (
     <div className="flex items-center justify-center min-h-screen p-4 flex-col">
       {response && <div className="mb-4 w-full max-w-md"><AlertError reset={reset} response={response} /></div>}
@@ -54,11 +55,13 @@ export const Login = () => {
             </div>
 
             {/* Login Button */}
+            {loader ? <LoadingSpinner /> : 
             <Button type="submit"
               className="mt-4 w-full bg-amber-300 text-black 
             cursor-pointer hover:bg-amber-400 transition duration-200">
               Login
             </Button>
+            }
           </form>
 
           {/* Signup Link */}

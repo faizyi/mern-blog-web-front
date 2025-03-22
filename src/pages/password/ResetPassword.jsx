@@ -4,8 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ResetPasswordHook } from "@/customHooks/user/resetPassword";
 import { AlertError } from "@/utils/AlertError";
-
+import { useSelector } from "react-redux";
+import { LoadingSpinner } from "@/components/loader/Loader";
 export const ResetPassword = () => {
+  const loader = useSelector((state) => state.loader.isLoader);
   const { handleResetPassword, password, setPassword, confirmPassword,
     setConfirmPassword, response } = ResetPasswordHook();
   return (
@@ -36,10 +38,11 @@ export const ResetPassword = () => {
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
             />
-
+            {loader ? <div className="mt-4"><LoadingSpinner/></div> : 
             <Button type="submit" className="mt-4 w-full bg-amber-300 text-black hover:bg-amber-400">
               Reset Password
             </Button>
+            }
           </form>
 
           <p className="mt-3 text-center">

@@ -1,8 +1,10 @@
 import { resetPassword } from '@/services/user';
 import React, { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
-
+import { useDispatch } from 'react-redux';
+import { showLoader, hideLoader } from '@/redux/loader/LoaderSlice';
 export const ResetPasswordHook = () => {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const [response, setResponse] = useState(null);
     const { token } = useParams();
@@ -11,8 +13,10 @@ export const ResetPasswordHook = () => {
 
     const handleResetPassword = async (e) => {
         e.preventDefault();
+        dispatch(showLoader());
         if (password !== confirmPassword) {
-            alert("Passwords do not match!");
+            dispatch(hideLoader());
+            setResponse('Passwords do not match!')
             return;
         }
         try {
@@ -22,6 +26,7 @@ export const ResetPasswordHook = () => {
                 navigate("/login");
             }
         } catch (error) {
+            dispatch(hideLoader());
             console.log(error); 
         }
 

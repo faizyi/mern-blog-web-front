@@ -5,8 +5,10 @@ import { SignupHook } from '@/customHooks/user/signup'
 import { AlertError } from '@/utils/AlertError'
 import React from 'react'
 import { Link } from 'react-router-dom'
-
+import { useSelector } from 'react-redux'
+import { LoadingSpinner } from '@/components/loader/Loader'
 export const Signup = () => {
+  const loader = useSelector((state) => state.loader.isLoader);
   const { register, handleSubmit, errors, onSubmit, response, reset } = SignupHook();
   return (
     <>
@@ -51,9 +53,10 @@ export const Signup = () => {
               />
               {errors.password && <p className='text-red-500'>Password is required</p>}
             </div>
+            {loader ? <div className='mt-4'><LoadingSpinner /></div> :
             <Button type={"submit"} 
             className="mt-4 w-full bg-amber-300 text-black 
-            cursor-pointer hover:bg-amber-400 transition duration-200">Signup</Button>
+            cursor-pointer hover:bg-amber-400 transition duration-200">Signup</Button>}
           </form>
           <p className="mt-3 text-center">Already have an account?
             <Link to="/login" className="text-blue-500 hover:underline ml-1">

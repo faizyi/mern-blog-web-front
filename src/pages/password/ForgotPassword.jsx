@@ -1,9 +1,12 @@
+import { LoadingSpinner } from "@/components/loader/Loader";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { ForgotPasswordHook } from "@/customHooks/user/forgotPassword";
 import { AlertError } from "@/utils/AlertError";
+import { useSelector } from "react-redux";
 export const ForgotPassword = () => {
+  const loader = useSelector((state) => state.loader.isLoader);
   const { handleSendCode, email, setEmail, response } = ForgotPasswordHook();
   return (
     <div className="flex items-center justify-center min-h-screen p-4 flex-col">
@@ -26,10 +29,12 @@ export const ForgotPassword = () => {
               onChange={(e) => setEmail(e.target.value)}
               required
             />
+            {loader ? <div className="mt-4"><LoadingSpinner/></div> : 
             <Button
               type="submit" className="mt-4 w-full bg-amber-400 text-black hover:bg-amber-300">
               Send Code
             </Button>
+            }
           </form>
         </CardContent>
       </Card>
