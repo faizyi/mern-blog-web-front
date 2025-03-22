@@ -10,18 +10,12 @@ export const GetUserProfileHook = () => {
             try {
                 const res = await getUserProfile(navigate);
                 console.log(res);
-                
                 if(res.status == 200) {
                     setUser(res?.data?.userInfo);
-                }
-                //  else {
-                //     localStorage.removeItem("user");
-                //     navigate("/login")
-                // }          
-                // if(res.response?.data.message == "Unauthorized") {
-                //     localStorage.removeItem("user");
-                //     navigate("/login");
-                // }
+                } else {
+                    localStorage.removeItem("user");
+                    navigate("/login")
+                }          
             } catch (error) {
                 // localStorage.removeItem("user");
                 // navigate("/login")
