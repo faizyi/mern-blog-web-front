@@ -17,8 +17,6 @@ export const GetUserProfileHook = () => {
                     navigate("/login")
                 }          
             } catch (error) {
-                // localStorage.removeItem("user");
-                // navigate("/login")
                 console.log(error);
             }
         }

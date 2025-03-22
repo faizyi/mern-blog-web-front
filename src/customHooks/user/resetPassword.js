@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 export const ResetPasswordHook = () => {
     const navigate = useNavigate();
+    const [response, setResponse] = useState(null);
     const { token } = useParams();
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -16,7 +17,8 @@ export const ResetPasswordHook = () => {
         }
         try {
             const res = await resetPassword(password, token);
-            if (res.status === 200) {
+            setResponse(res);
+            if(res.status == 200) {
                 navigate("/login");
             }
         } catch (error) {
@@ -25,6 +27,9 @@ export const ResetPasswordHook = () => {
 
     };
     return {
-        password, setPassword, confirmPassword, setConfirmPassword, handleResetPassword
+        password, setPassword, 
+        confirmPassword, setConfirmPassword,
+         handleResetPassword,
+         response
     }
 }

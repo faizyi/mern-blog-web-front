@@ -4,12 +4,14 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { LoginHook } from '@/customHooks/user/login';
+import { AlertError } from '@/utils/AlertError';
 
 export const Login = () => {
-  const { register, handleSubmit, errors, onSubmit } = LoginHook();
+  const { register, handleSubmit, errors, onSubmit, response, reset } = LoginHook();
 
   return (
-    <div className="flex items-center justify-center min-h-screen p-4">
+    <div className="flex items-center justify-center min-h-screen p-4 flex-col">
+      {response && <div className="mb-4 w-full max-w-md"><AlertError reset={reset} response={response} /></div>}
       <Card className="w-full max-w-md shadow-lg">
         <CardHeader>
           <CardTitle>Login</CardTitle>
@@ -52,8 +54,8 @@ export const Login = () => {
             </div>
 
             {/* Login Button */}
-            <Button type="submit" 
-            className="mt-4 w-full bg-amber-300 text-black 
+            <Button type="submit"
+              className="mt-4 w-full bg-amber-300 text-black 
             cursor-pointer hover:bg-amber-400 transition duration-200">
               Login
             </Button>

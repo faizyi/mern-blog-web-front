@@ -3,19 +3,21 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ResetPasswordHook } from "@/customHooks/user/resetPassword";
+import { AlertError } from "@/utils/AlertError";
 
 export const ResetPassword = () => {
   const { handleResetPassword, password, setPassword, confirmPassword,
-     setConfirmPassword} = ResetPasswordHook();
+    setConfirmPassword, response } = ResetPasswordHook();
   return (
-    <div className="flex items-center justify-center min-h-screen p-4">
+    <div className="flex items-center justify-center min-h-screen p-4 flex-col">
+      {response && <div className="mb-4 w-full max-w-md"><AlertError response={response} /></div>}
       <Card className="w-full max-w-md shadow-lg">
         <CardHeader>
           <CardTitle>Reset Password</CardTitle>
         </CardHeader>
         <CardContent>
-          <form 
-          onSubmit={handleResetPassword}
+          <form
+            onSubmit={handleResetPassword}
           >
             <label className="block text-sm font-medium text-gray-700">New Password</label>
             <Input

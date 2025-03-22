@@ -2,16 +2,22 @@ import { forgotPassword } from '@/services/user';
 import React, { useState } from 'react'
 
 export const ForgotPasswordHook = () => {
-    const [email, setEmail] = useState("");
+  const [response, setResponse] = useState(null);
+  const [email, setEmail] = useState("");
 
-    const handleSendCode = async (e) => {
-      e.preventDefault();
-    //   console.log("Reset code sent to:", email);
+  const handleSendCode = async (e) => {
+    e.preventDefault();
+    try {
       const res = await forgotPassword(email);
-    };
+      setResponse(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return {
     email,
     setEmail,
-    handleSendCode
+    handleSendCode,
+    response
   }
 }

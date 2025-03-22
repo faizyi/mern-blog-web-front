@@ -1,5 +1,4 @@
 import { axiosHandler } from "@/axios/axios"
-
 export const signup = async (data) =>{
     try {
         const res = await axiosHandler.post("/user/register", data)
@@ -32,12 +31,10 @@ export const getUserProfile = async (navigate) =>{
         const res = await axiosHandler.get("/user/profile",{
             withCredentials: true
         })
-        // console.log(res);
         
         return res
     } catch (error) {
         localStorage.removeItem("user");
-        // navigate("/login")
         return error
     }
 }
@@ -57,7 +54,6 @@ export const updateUserProfile = async (formData) =>{
 export const forgotPassword = async (email) => {
     try {
         const res = await axiosHandler.post("/user/forgot-password",{ email});
-        console.log(res);
         return res
     } catch (error) {
         return error
@@ -68,8 +64,11 @@ export const resetPassword = async (password, token) => {
     try {
         const res = await axiosHandler.post(`/user/reset-password/${token}`, {password});
         console.log(res);
+        
         return res
     } catch (error) {
+        console.log(error);
+        
         return error
     }
 }

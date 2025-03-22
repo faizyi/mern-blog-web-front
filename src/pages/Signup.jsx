@@ -2,13 +2,16 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { SignupHook } from '@/customHooks/user/signup'
+import { AlertError } from '@/utils/AlertError'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
 export const Signup = () => {
-  const { register, handleSubmit, errors, onSubmit } = SignupHook()
+  const { register, handleSubmit, errors, onSubmit, response, reset } = SignupHook();
   return (
-    <div className="flex items-center justify-center min-h-screen p-4">
+    <>
+    <div className="flex items-center justify-center min-h-screen p-4 flex-col">
+      {response && <div className="mb-4 w-full max-w-md"><AlertError reset={reset} response={response} /></div>}
       <Card className={"w-full max-w-md shadow-lg"}>
         <CardHeader>
           <CardTitle>
@@ -60,5 +63,6 @@ export const Signup = () => {
         </CardContent>
       </Card>
       </div>
+      </>
   )
 }
