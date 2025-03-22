@@ -13,10 +13,11 @@ export const GetUserProfileHook = () => {
                 
                 if(res.status == 200) {
                     setUser(res?.data?.userInfo);
-                } else {
-                    localStorage.removeItem("user");
-                    navigate("/login")
-                }          
+                }
+                //  else {
+                //     localStorage.removeItem("user");
+                //     navigate("/login")
+                // }          
                 // if(res.response?.data.message == "Unauthorized") {
                 //     localStorage.removeItem("user");
                 //     navigate("/login");
