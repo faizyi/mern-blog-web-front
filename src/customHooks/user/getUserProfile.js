@@ -9,14 +9,21 @@ export const GetUserProfileHook = () => {
         const fetchUserProfile = async () => {
             try {
                 const res = await getUserProfile(navigate);
-                if(res.response?.data.message == "Unauthorized") {
+                console.log(res);
+                
+                if(res.status == 200) {
+                    setUser(res?.data?.userInfo);
+                } else {
                     localStorage.removeItem("user");
-                    navigate("/login");
-                }
-                setUser(res?.data?.userInfo);
+                    navigate("/login")
+                }          
+                // if(res.response?.data.message == "Unauthorized") {
+                //     localStorage.removeItem("user");
+                //     navigate("/login");
+                // }
             } catch (error) {
-                localStorage.removeItem("user");
-                navigate("/login")
+                // localStorage.removeItem("user");
+                // navigate("/login")
                 console.log(error);
             }
         }
