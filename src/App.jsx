@@ -29,7 +29,7 @@ function App() {
         <Route path='/login' element={<PublicRoute><Login/></PublicRoute>}/>
         <Route path='/forgot-password' element={<ForgotPassword/>}/>
         {/* <Route path='/password/verify-code' element={<VerifyCode/>}/> */}
-        <Route path='/reset-password/:resetLink' element={<ResetPassword/>}/>
+        <Route path='/reset-password/:token' element={<ResetPassword/>}/>
         <Route path='/user/create-blog' element={<ProtectedRoute><CreateBlog/></ProtectedRoute>}/>
         <Route path='/user/profile' element={<ProtectedRoute><UserProfile/></ProtectedRoute>}/>
       </Routes>

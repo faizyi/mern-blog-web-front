@@ -41,7 +41,7 @@ export const Drawer = () => {
           {user ? (
             <div className="flex flex-col gap-2">
               {/* Create Blog Button */}
-              <Link to="/user/create/blog" className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 transition">
+              <Link to="/user/create-blog" className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 transition">
                 <span>Create Blog</span>
               </Link>
               

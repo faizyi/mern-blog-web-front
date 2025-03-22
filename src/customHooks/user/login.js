@@ -8,6 +8,8 @@ export const LoginHook = () => {
     const onSubmit = async (data) =>{
         try {
             const res = await login(data);
+            console.log(res);
+            
             if(res.status !== 200) {return}
             localStorage.setItem('user', JSON.stringify(res.data.userData));
             reset()

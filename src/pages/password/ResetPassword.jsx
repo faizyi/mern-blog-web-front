@@ -1,23 +1,12 @@
-import React, { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { ResetPasswordHook } from "@/customHooks/user/resetPassword";
 
 export const ResetPassword = () => {
-//   const [password, setPassword] = useState("");
-//   const [confirmPassword, setConfirmPassword] = useState("");
-
-//   const handleResetPassword = (e) => {
-//     e.preventDefault();
-//     if (password !== confirmPassword) {
-//       alert("Passwords do not match!");
-//       return;
-//     }
-//     console.log("New Password:", password);
-//     // TODO: Implement API call to reset password
-//   };
-
+  const { handleResetPassword, password, setPassword, confirmPassword,
+     setConfirmPassword} = ResetPasswordHook();
   return (
     <div className="flex items-center justify-center min-h-screen p-4">
       <Card className="w-full max-w-md shadow-lg">
@@ -26,14 +15,14 @@ export const ResetPassword = () => {
         </CardHeader>
         <CardContent>
           <form 
-        //   onSubmit={handleResetPassword}
+          onSubmit={handleResetPassword}
           >
             <label className="block text-sm font-medium text-gray-700">New Password</label>
             <Input
               type="password"
               placeholder="••••••••"
-            //   value={password}
-            //   onChange={(e) => setPassword(e.target.value)}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               required
             />
 
@@ -41,8 +30,8 @@ export const ResetPassword = () => {
             <Input
               type="password"
               placeholder="••••••••"
-            //   value={confirmPassword}
-            //   onChange={(e) => setConfirmPassword(e.target.value)}
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
               required
             />
 
