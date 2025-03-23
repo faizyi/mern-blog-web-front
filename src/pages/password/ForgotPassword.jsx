@@ -32,7 +32,7 @@ export const ForgotPassword = () => {
             {loader ? <div className="mt-4"><LoadingSpinner/></div> : 
             <Button
               type="submit" className="mt-4 w-full bg-amber-400 text-black hover:bg-amber-300">
-              Send Code
+                Send Link via Email
             </Button>
             }
           </form>

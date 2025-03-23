@@ -40,7 +40,7 @@ export const ResetPassword = () => {
             />
             {loader ? <div className="mt-4"><LoadingSpinner/></div> : 
             <Button type="submit" className="mt-4 w-full bg-amber-300 text-black hover:bg-amber-400">
-              Reset Password
+              Update Password
             </Button>
             }
           </form>
