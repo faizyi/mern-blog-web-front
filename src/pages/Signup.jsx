@@ -23,7 +23,7 @@ export const Signup = () => {
         <CardContent>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div>
-              <label htmlFor="" className="block text-sm font-medium text-gray-700">UserName</label>
+              <label htmlFor="" className="block text-sm font-medium text-gray-700">Your Name</label>
               <Input
               type={"text"}
               placeholder="John Doe"
@@ -32,7 +32,7 @@ export const Signup = () => {
               />
               {errors.username && <p className='text-red-500'>Username is required</p>}
             </div>
-            <div>
+            <div className='mt-3'>
               <label htmlFor="" className="block text-sm font-medium text-gray-700">Your Email</label>
               <Input
               type={"email"}
@@ -42,7 +42,7 @@ export const Signup = () => {
               />
               {errors.email && <p className='text-red-500'>Email is required</p>}
             </div>
-            <div>
+            <div className='mt-3'>
               <label htmlFor="" className="block text-sm font-medium text-gray-700">Your Password</label>
               <Input
               type={"password"}

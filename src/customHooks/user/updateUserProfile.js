@@ -1,17 +1,33 @@
-import { userProfileQuery } from '@/services/react-query/userQuery';
+import { queryClient, userProfileQuery } from '@/services/react-query/userQuery';
 import { updateUserProfile } from '@/services/user';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form';
 
 export const UpdateUserProfileHook = () => {
-    const { data: userInfo } = userProfileQuery();
-    console.log(userInfo);
-    
-    const [profilePic, setProfilePic] = useState(userInfo?.profilePic || "");
-    const [username, setUsername] = useState(userInfo?.username);
-    const [email, setEmail] = useState(userInfo?.email || "");
-    const [currentPassword, setCurrentPassword] = useState("");
-    const [newPassword, setNewPassword] = useState("");
-    const [file, setFile] = useState(null);
+  const { data: userInfo, refetch } = userProfileQuery();
+  const [loading, setLoading] = useState(false);
+  const [profilePic, setProfilePic] = useState(userInfo?.profilePic || "");
+  const [file, setFile] = useState(null);
+  const [message, setMessage] = useState(null);
+  const { register, handleSubmit, formState: { errors } , reset} = useForm({
+    defaultValues: {
+      username: userInfo?.username || "",
+      email: userInfo?.email || "",
+      currentPassword: "",
+      newPassword: ""
+    }
+  });
+
+  useEffect(() =>{
+    reset({
+      username: userInfo?.username || "",
+      email: userInfo?.email || "",
+      currentPassword: "",
+      newPassword: ""
+    })
+    setProfilePic(userInfo?.profilePic || "");
+  },[userInfo, reset]);
+
   
     const handleProfilePicChange = (e) => {
       const file = e.target.files[0];
@@ -21,48 +37,30 @@ export const UpdateUserProfileHook = () => {
       }
     };
   
-    const handleUpdateProfile = async () => {
-      const formData = new FormData();
-      formData.append("username", username);
-      formData.append("email", email);
-      if (currentPassword && newPassword) {
-        formData.append("currentPassword", currentPassword);
-        formData.append("newPassword", newPassword);
-      }
-  
-      if (file) formData.append("profilePic", file);
-      for (const [key, value] of formData.entries()) {
-          console.log(key, value);
-      }
-  
+    const onSubmit = async (data) => {
+      setLoading(true);
+      const formData = { ...data,};
+      if(file) formData.profilePic = file;
+      
       try {
-          const res = await updateUserProfile(formData);
-          console.log("Profile Updated:", res.data);
-          alert("Profile updated successfully!");
-  
-          // ✅ Update user state with new values
-          setUsername(res.data.userInfo.username);
-          setEmail(res.data.userInfo.email);
-          setProfilePic(res.data.userInfo.profilePic);
+        const res = await updateUserProfile(formData);
+        await refetch();
+        console.log("Profile Updated:", res);
+        setLoading(false);
       } catch (error) {
+        setLoading(false);
           console.error("Error updating profile:", error);
-          alert("Failed to update profile.");
       }
   };
     
   return {
-    userInfo,
     profilePic,
-    username,
-    email,
-    currentPassword,
-    newPassword,
-    setCurrentPassword,
-    setNewPassword,
-    setUsername,
-    setEmail,
     setProfilePic,
     handleProfilePicChange,
-    handleUpdateProfile
+    onSubmit,
+    handleSubmit,
+    register,
+    errors,
+    loading
   }
 }

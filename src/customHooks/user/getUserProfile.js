@@ -9,7 +9,6 @@ export const GetUserProfileHook = () => {
         const fetchUserProfile = async () => {
             try {
                 const res = await getUserProfile(navigate);
-                console.log(res);
                 if(res.status == 200) {
                     setUser(res?.data?.userInfo);
                 } else {

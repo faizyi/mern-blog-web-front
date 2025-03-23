@@ -40,6 +40,8 @@ export const getUserProfile = async (navigate) =>{
 }
 
 export const updateUserProfile = async (formData) =>{
+    // console.log(formData);
+    
     try {
         const res = await axiosHandler.put("/user/update-profile", formData, {
             headers: {"Content-Type" : "multipart/form-data"}
