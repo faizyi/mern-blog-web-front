@@ -2,6 +2,8 @@ import { QueryClient, useQuery} from '@tanstack/react-query'
 import { useEffect, useState } from 'react';
 import { getUserProfile } from '../user';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { showLoader, hideLoader } from '@/redux/loader/LoaderSlice';
 export const userProfileQuery = () => {
   const navigate = useNavigate();
   return useQuery({
@@ -10,10 +12,14 @@ export const userProfileQuery = () => {
       try {
         const res = await getUserProfile();
         if (res.status === 200) {
-          return res.data.userInfo;
-        } else {
+          return res;
+        } else if (res.status === 401) {
+          
           localStorage.removeItem("user");
-          navigate("/login");
+          // navigate("/login");
+          queryClient.removeQueries(["userInfo"]);
+          return null;
+        } else {
           return null;
         }
       } catch (error) {

@@ -2,17 +2,18 @@ import { queryClient, userProfileQuery } from '@/services/react-query/userQuery'
 import { updateUserProfile } from '@/services/user';
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
-
+import { useDispatch } from 'react-redux';
+import { showLoader, hideLoader } from '@/redux/loader/LoaderSlice';
 export const UpdateUserProfileHook = () => {
+  const disptach = useDispatch();
+  const [response, setResponse] = useState(null);
   const { data: userInfo, refetch } = userProfileQuery();
-  const [loading, setLoading] = useState(false);
-  const [profilePic, setProfilePic] = useState(userInfo?.profilePic || "");
+  const [profilePic, setProfilePic] = useState(userInfo?.data.userInfo.profilePic || "");
   const [file, setFile] = useState(null);
-  const [message, setMessage] = useState(null);
   const { register, handleSubmit, formState: { errors } , reset} = useForm({
     defaultValues: {
-      username: userInfo?.username || "",
-      email: userInfo?.email || "",
+      username: userInfo?.data.userInfo.username || "",
+      email: userInfo?.data.userInfo.email || "",
       currentPassword: "",
       newPassword: ""
     }
@@ -20,12 +21,12 @@ export const UpdateUserProfileHook = () => {
 
   useEffect(() =>{
     reset({
-      username: userInfo?.username || "",
-      email: userInfo?.email || "",
+      username: userInfo?.data.userInfo.username || "",
+      email: userInfo?.data.userInfo.email || "",
       currentPassword: "",
       newPassword: ""
     })
-    setProfilePic(userInfo?.profilePic || "");
+    setProfilePic(userInfo?.data.userInfo?.profilePic || "");
   },[userInfo, reset]);
 
   
@@ -38,18 +39,17 @@ export const UpdateUserProfileHook = () => {
     };
   
     const onSubmit = async (data) => {
-      setLoading(true);
+      disptach(showLoader());
       const formData = { ...data,};
       if(file) formData.profilePic = file;
       
       try {
         const res = await updateUserProfile(formData);
+        setResponse(res);
         await refetch();
-        console.log("Profile Updated:", res);
-        setLoading(false);
+        disptach(hideLoader());
       } catch (error) {
-        setLoading(false);
-          console.error("Error updating profile:", error);
+          disptach(hideLoader());
       }
   };
     
@@ -61,6 +61,6 @@ export const UpdateUserProfileHook = () => {
     handleSubmit,
     register,
     errors,
-    loading
+    response
   }
 }

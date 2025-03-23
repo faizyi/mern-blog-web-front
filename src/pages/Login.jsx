@@ -48,7 +48,7 @@ export const Login = () => {
 
               {/* Forgot Password Link */}
               <div className="text-right mt-1">
-                <Link to="/forgot-password" className="text-blue-500 hover:underline text-sm">
+                <Link to="/forgot-password" className="text-sm text-blue-500 hover:text-blue-700">
                   Forgot Password?
                 </Link>
               </div>

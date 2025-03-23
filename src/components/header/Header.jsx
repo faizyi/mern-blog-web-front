@@ -11,7 +11,7 @@ export const Header = () => {
   const { handleLogout } = SignupHook();
 
   return (
-    <header className="w-full fixed top-0 bg-blue-950 shadow-md py-4">
+    <header className="w-full fixed top-0 bg-blue-950 shadow-md py-4 z-10">
       <div id="container" className="max-w-[1100px] mx-auto px-4">
         <nav className="flex items-center justify-between">
           {/* Logo */}
