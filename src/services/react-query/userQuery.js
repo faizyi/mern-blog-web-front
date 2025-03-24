@@ -1,17 +1,14 @@
 import { QueryClient, useQuery} from '@tanstack/react-query'
-import { useEffect, useState } from 'react';
 import { getUserProfile } from '../user';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { showLoader, hideLoader } from '@/redux/loader/LoaderSlice';
+import { useState } from 'react';
 export const userProfileQuery = () => {
-  const navigate = useNavigate();
+  const [hasAuthError, setHasAuthError] = useState(false);
   const [response, setResponse] = useState(null);
   return useQuery({
     queryKey: ["userInfo"],
     queryFn: async () => {
       try {
-        const res = await getUserProfile();
+        const res = await getUserProfile(hasAuthError, setHasAuthError);
         setResponse(res);
         if (res.status === 200) {
           return res;

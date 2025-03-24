@@ -1,5 +1,5 @@
 import { queryClient, userProfileQuery } from '@/services/react-query/userQuery';
-import { updateUserProfile } from '@/services/user';
+import { deleteUser, updateUserProfile } from '@/services/user';
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
@@ -52,6 +52,20 @@ export const UpdateUserProfileHook = () => {
           disptach(hideLoader());
       }
   };
+
+  const handleDeleteAccount = async () => {
+    disptach(showLoader());
+    try {
+      const res = await deleteUser();
+      setResponse(res);
+      localStorage.removeItem('user');
+      queryClient.removeQueries(['userInfo']);
+      disptach(hideLoader());
+    } catch (error) {
+      disptach(hideLoader());
+      console.log(error);
+    }
+  }
     
   return {
     profilePic,
@@ -61,6 +75,7 @@ export const UpdateUserProfileHook = () => {
     handleSubmit,
     register,
     errors,
-    response
+    response,
+    handleDeleteAccount
   }
 }

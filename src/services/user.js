@@ -26,7 +26,16 @@ export const logout = async ()=>{
     }
 }
 
-export const getUserProfile = async (navigate) =>{
+export const deleteUser = async () => {
+    try {
+        const res = await axiosHandler.post("/user/delete-user");
+        return res
+    } catch (error) {
+        return error
+    }
+}
+
+export const getUserProfile = async (hasAuthError, setHasAuthError) =>{
     try {
         const res = await axiosHandler.get("/user/profile",{
             withCredentials: true
@@ -34,7 +43,7 @@ export const getUserProfile = async (navigate) =>{
         return res
     } catch (error) {
         localStorage.removeItem("user");
-        return error
+        throw error
     }
 }
 
