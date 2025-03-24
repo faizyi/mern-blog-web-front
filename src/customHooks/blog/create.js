@@ -3,8 +3,10 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { showLoader, hideLoader } from '@/redux/loader/LoaderSlice';
+import { blogQuery } from '@/services/react-query/blogQuery';
 export const CreateBlogHook = () => {
     const dispatch = useDispatch();
+    const { refetch } = blogQuery();
     const [response, setResponse] = useState(null);
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         defaultValues: {
@@ -30,6 +32,7 @@ export const CreateBlogHook = () => {
         if(file) formData.append("blogImage", file);
         try {
             const res = await createBlog(formData);
+            await refetch();
             setResponse(res);
             dispatch(hideLoader());
             reset();
