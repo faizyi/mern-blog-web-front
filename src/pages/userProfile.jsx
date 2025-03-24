@@ -32,7 +32,7 @@ export const UserProfile = () => {
         </div>
       )}
 
-      <Card className="w-full max-w-4xl bg-white shadow-xl rounded-2xl p-8">
+      <Card className="w-full max-w-4xl bg-gray-50 rounded-2xl p-8">
         <CardHeader className="text-center">
           <CardTitle className="text-3xl font-bold text-gray-900">
             User Profile

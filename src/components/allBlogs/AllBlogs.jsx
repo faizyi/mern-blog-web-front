@@ -1,55 +1,65 @@
 import React from "react";
-// import { formatDistanceToNow } from "date-fns"; // To format the created time
 import { Link } from "react-router-dom";
-import { Skeleton } from "../ui/skeleton";
+// import { formatDistanceToNow } from "date-fns";
+import { blogQuery } from "@/services/react-query/blogQuery";
 import { Card, CardContent, CardTitle } from "../ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { Skeleton } from "../ui/skeleton";
 import { Button } from "../ui/button";
 
-export const AllBlogs = ({ posts, loading }) => {
+export const AllBlogs = () => {
+  const { data: allBlogs, isLoading } = blogQuery();
+
   return (
     <div className="container mx-auto py-10 px-4">
-    <h3 className="text-2xl font-semibold mb-6">Latest Posts</h3>
+      <h3 className="text-2xl font-semibold mb-6">Latest Posts</h3>
+      <div className="grid md:grid-cols-3 gap-6">
+        {isLoading
+          ? [1, 2, 3, 4, 5, 6].map((_, i) => <Skeleton key={i} className="h-60 w-full" />)
+          : allBlogs?.data?.blogs?.map((post) => (
+              <Card key={post._id} className="bg-gray-50">
+                <div className="relative px-2">
+                  <img
+                    src={post.image || "/default-blog.jpg"}
+                    alt={post.title}
+                    className="w-full object-cover rounded-2xl"
+                  />
+                </div>
+                <CardContent className="">
+                  <CardTitle className="text-lg font-bold">{post.title.length > 30 ? 
+                  post.title.substring(0, 40) + "..." : post.title}</CardTitle>
+                  <p className="text-sm text-gray-600">
+                    {post.description.length > 100 ? post.description.substring(0, 100)
+                     + "..." : post.description}
+                  </p>
+                  <div className="flex justify-between items-center">
+                  <Link to={`/blog/${post._id}`}>
+                    <Button variant="link" className="">
+                      Read More
+                    </Button>
+                  </Link>
+                  <span className=" text-gray-600 px-2 py-1 text-xs rounded">
+                    {new Date(post.createdAt).toLocaleTimeString()}-
+                    {new Date(post.createdAt).toDateString()}
+                  </span>
+                  </div>
+                  
+                  <div className="flex items-center space-x-3 border-t pt-3">
+                    <Avatar>
+                      <AvatarImage src={post.user?.profilePic || "/default-avatar.jpg"} 
+                      alt={post.user?.username} />
+                      <AvatarFallback>{post.user?.username?.charAt(0) || "U"}</AvatarFallback>
+                    </Avatar>
+                    <div className="">
+                      <p className="text-sm font-medium">{post.user?.username}</p>
+                      <p className="text-xs text-gray-600">Views {post.views}</p>
+                    </div>
+                  </div>
 
-    <div className="grid md:grid-cols-3 gap-6">
-      {
-      // loading ? (
-        [1, 2, 3,4,5,6].map((_, i) => <Skeleton key={i} className="h-60 w-full" />
-      // {/* ) : ( */}
-        // posts.map((post) => (
-        //   <Card key={post._id} className="hover:shadow-lg transition">
-        //     <div className="relative">
-        //       {/* Blog Image */}
-        //       <img
-        //         src={post.image || "/default-blog.jpg"} // Default image if none
-        //         alt={post.title}
-        //         className="w-full h-40 object-cover rounded-t-md"
-        //       />
-        //       {/* Blog Created Time */}
-        //       <span className="absolute top-2 right-2 bg-black text-white text-xs px-2 py-1 rounded">
-        //         {formatDistanceToNow(new Date(post.createdAt), { addSuffix: true })}
-        //       </span>
-        //     </div>
-
-        //     <CardContent className="p-4">
-        //       {/* Blog Title */}
-        //       <CardTitle className="text-lg font-bold">{post.title}</CardTitle>
-
-        //       {/* Blog Description */}
-        //       <p className="text-sm text-gray-600 mt-2">
-        //         {post.content.length > 100 ? post.content.substring(0, 100) + "..." : post.content}
-        //       </p>
-
-        //       {/* Read More Button */}
-        //       <Link to={`/blog/${post._id}`}>
-        //         <Button variant="link" className="mt-4">
-        //           Read More
-        //         </Button>
-        //       </Link>
-        //     </CardContent>
-        //   </Card>
-        // ))
-      )}
+                </CardContent>
+              </Card>
+            ))}
+      </div>
     </div>
-  </div>
   );
 };

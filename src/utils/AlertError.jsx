@@ -6,7 +6,7 @@ export const AlertError = ({ response, reset }) => {
     const dispatch = useDispatch();
     const [show, setShow] = useState(true);
     useEffect(() => {
-        if (response?.status === 200) {
+        if (response?.status === 200 || response?.status === 201) {
             setShow(false);
             dispatch(hideLoader());
         } else if (response?.status !== 200) {

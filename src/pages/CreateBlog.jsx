@@ -1,81 +1,77 @@
+import { LoadingSpinner } from "@/components/loader/Loader";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import React, { useState } from "react";
-
+import { CreateBlogHook } from "@/customHooks/blog/create";
+import { AlertError } from "@/utils/AlertError";
+import React from "react";
+import { useSelector } from "react-redux";
 
 export const CreateBlog = () => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [image, setImage] = useState(null);
-  const [preview, setPreview] = useState("");
-
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setImage(file);
-      setPreview(URL.createObjectURL(file));
-    }
-  };
-
-  const handleSubmit = () => {
-    console.log({ title, description, image });
-    // TODO: API call to upload blog post
-  };
+  const loader = useSelector((state) => state.loader.isLoader);
+  const { register, handleSubmit, errors, image, handleImageChange, onSubmit, response } = CreateBlogHook();
 
   return (
-    <div className="flex justify-center  mt-12 items-center min-h-screen p-6">
-      <Card className="w-full max-w-5xl bg-white shadow-lg rounded-lg p-6">
-        <CardHeader className="text-center">
-          <CardTitle className="text-2xl font-bold text-gray-800">Create a Blog</CardTitle>
+    <div className="flex justify-center items-center min-h-screen p-6 flex-col">
+      {response && (
+        <div className="mb-4 w-full max-w-md mt-16">
+          <AlertError response={response} />
+        </div>
+      )}
+      <Card className="w-full max-w-5xl bg-gray-50 rounded-2xl p-8">
+        <CardHeader className="text-center mb-6">
+          <CardTitle className="text-3xl font-semibold text-gray-800">Create a Blog</CardTitle>
         </CardHeader>
-        <CardContent className="space-y-6">
+        <CardContent>
+          <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Left Section - Image Upload */}
+            <div className="flex flex-col items-center space-y-4">
+              <input id="blogImage" type="file" accept="image/*" className="hidden"
+                onChange={handleImageChange} />
+              <label htmlFor="blogImage" className="cursor-pointer">
+                {image ? (
+                  <img src={image} alt="Preview" className="w-full h-40 object-cover rounded-md border" />
+                ) : (
+                  <div className="w-full h-52 px-30 flex items-center justify-center border-2 border-dashed 
+                  rounded-lg text-gray-500">
+                    Click to Upload Image
+                  </div>
+                )}
+              </label>
+            </div>
 
-          {/* Image Upload Section */}
-          <div className="flex flex-col items-center">
-            <input id="blogImage" type="file" accept="image/*" className="hidden" onChange={handleImageChange} />
-            <label htmlFor="blogImage" className="cursor-pointer">
-              {preview ? (
-                <img src={preview} alt="Preview" className="w-full h-40 object-cover  rounded-md border" />
+            {/* right Section - Title & Description */}
+            <div className="space-y-6">
+              <div>
+                <Label className="text-lg font-medium">Title</Label>
+                <Input type="text" {...register("title", { required: true })} placeholder="Enter blog title" className="mt-2" />
+                {errors.title && <p className="text-red-500 text-sm">Title is required</p>}
+              </div>
+              <div>
+                <Label className="text-lg font-medium">Description</Label>
+                <Textarea
+                  placeholder="Write your blog description..."
+                  {...register("description", { required: true })}
+                  rows={5}
+                  className="mt-2"
+                />
+                {errors.description && <p className="text-red-500 text-sm">Description is required</p>}
+              </div>
+            </div>
+
+            {/* Publish Button */}
+            <div className="col-span-1 md:col-span-2 flex justify-end">
+              {loader ? (
+                <LoadingSpinner />
               ) : (
-                <div className="w-full h-40 flex items-center p-4 justify-center border rounded-md text-gray-500">
-                  Click to Upload Image
-                </div>
+                <Button type="submit" className="bg-amber-500 text-white py-2 px-6 rounded-lg hover:bg-amber-600 transition duration-200">
+                  Publish Blog
+                </Button>
               )}
-            </label>
-          </div>
-
-          {/* Title Input */}
-          <div>
-            <label className="text-sm font-medium text-gray-700">Title</label>
-            <Input 
-              type="text" 
-              placeholder="Enter blog title" 
-              value={title} 
-              onChange={(e) => setTitle(e.target.value)}
-            />
-          </div>
-
-          {/* Description Input */}
-          <div>
-            <label className="text-sm font-medium text-gray-700">Description</label>
-            <Textarea
-              placeholder="Write your blog description..." 
-              value={description} 
-              onChange={(e) => setDescription(e.target.value)}
-              rows={5}
-            />
-          </div>
-
-          {/* Upload Button */}
-          <Button 
-            className="w-full bg-amber-300 text-black py-2 rounded-md hover:bg-amber-400 
-            transition duration-200"
-            onClick={handleSubmit}
-          >
-            Publish Blog
-          </Button>
+            </div>
+          </form>
         </CardContent>
       </Card>
     </div>
