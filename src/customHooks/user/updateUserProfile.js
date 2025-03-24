@@ -7,7 +7,7 @@ import { showLoader, hideLoader } from '@/redux/loader/LoaderSlice';
 export const UpdateUserProfileHook = () => {
   const disptach = useDispatch();
   const [response, setResponse] = useState(null);
-  const { data: userInfo, refetch } = userProfileQuery();
+  const { data: userInfo, refetch, } = userProfileQuery();
   const [profilePic, setProfilePic] = useState(userInfo?.data.userInfo.profilePic || "");
   const [file, setFile] = useState(null);
   const { register, handleSubmit, formState: { errors } , reset} = useForm({

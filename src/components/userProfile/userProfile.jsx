@@ -9,14 +9,16 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { Link } from "react-router-dom";
+import { UpdateUserProfileHook } from "@/customHooks/user/updateUserProfile";
 
 export const UserProfile = ({ handleLogout }) => {
+  const { profilePic } = UpdateUserProfileHook();
   return (
     <div className="relative">
       <DropdownMenu>
         <DropdownMenuTrigger className="focus:outline-none">
-          <Avatar className="w-10 h-10 border border-gray-300 hover:border-gray-400 transition duration-200">
-            <AvatarImage src="https://github.com/shadcn.png" />
+          <Avatar className="w-12 h-12 border border-gray-300 hover:border-gray-400 transition duration-200">
+            <AvatarImage src={profilePic} />
             <AvatarFallback className="text-gray-700">CN</AvatarFallback>
           </Avatar>
         </DropdownMenuTrigger>
@@ -30,6 +32,11 @@ export const UserProfile = ({ handleLogout }) => {
           <Link to="/user/profile">
             <DropdownMenuItem className="hover:bg-gray-100 px-4 py-2 cursor-pointer transition duration-200">
               Profile
+            </DropdownMenuItem>
+          </Link>
+          <Link to="/">
+            <DropdownMenuItem className="hover:bg-gray-100 px-4 py-2 cursor-pointer transition duration-200">
+              Blogs
             </DropdownMenuItem>
           </Link>
           <DropdownMenuItem

@@ -13,7 +13,6 @@ export const UserProfile = () => {
   const loader = useSelector((state) => state.loader.isLoader);
   const { profilePic, register, errors, handleSubmit,
     onSubmit, handleProfilePicChange, response } = UpdateUserProfileHook();
-
   return (
     <div className="flex justify-center mt-8 items-center min-h-screen p-6 flex-col">
       {response && <div className="mb-4 w-full max-w-md"><AlertError response={response} /></div>}

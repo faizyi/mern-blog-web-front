@@ -23,7 +23,7 @@ export const ResetPasswordHook = () => {
             const res = await resetPassword(password, token);
             setResponse(res);
             if(res.status == 200) {
-                navigate("/login");
+                // navigate("/login");
             }
         } catch (error) {
             dispatch(hideLoader());

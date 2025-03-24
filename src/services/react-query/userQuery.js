@@ -6,19 +6,20 @@ import { useDispatch } from 'react-redux';
 import { showLoader, hideLoader } from '@/redux/loader/LoaderSlice';
 export const userProfileQuery = () => {
   const navigate = useNavigate();
+  const [response, setResponse] = useState(null);
   return useQuery({
     queryKey: ["userInfo"],
     queryFn: async () => {
       try {
         const res = await getUserProfile();
+        setResponse(res);
         if (res.status === 200) {
           return res;
         } else if (res.status === 401) {
-          
           localStorage.removeItem("user");
           // navigate("/login");
           queryClient.removeQueries(["userInfo"]);
-          return null;
+          return res;
         } else {
           return null;
         }
@@ -28,7 +29,7 @@ export const userProfileQuery = () => {
       }
     },
     staleTime: 24 * 60 * 60 * 1000,
-    cacheTime: 24 * 60 * 60 * 1000
+    cacheTime: 24 * 60 * 60 * 1000,
   })
 }
 

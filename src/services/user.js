@@ -31,7 +31,6 @@ export const getUserProfile = async (navigate) =>{
         const res = await axiosHandler.get("/user/profile",{
             withCredentials: true
         })
-        
         return res
     } catch (error) {
         localStorage.removeItem("user");
