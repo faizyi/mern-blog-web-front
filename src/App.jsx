@@ -14,6 +14,7 @@ import { queryClient } from './services/react-query/userQuery'
 import { Footer } from './components/footer/Footer'
 import { ForgotPassword } from './pages/password/ForgotPassword'
 import { ResetPassword } from './pages/password/ResetPassword'
+import { Blog } from './pages/blog'
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
         <Route path='/forgot-password' element={<ForgotPassword/>}/>
         <Route path='/reset-password/:token' element={<ResetPassword/>}/>
         <Route path='/user/create-blog' element={<ProtectedRoute><CreateBlog/></ProtectedRoute>}/>
+        <Route path='/blog/:title/:id' element={<Blog/>}/>
         <Route path='/user/profile' element={<ProtectedRoute><UserProfile/></ProtectedRoute>}/>
       </Routes>
       <ReactQueryDevtools initialIsOpen={false} position='right'/>

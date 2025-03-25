@@ -17,48 +17,51 @@ export const AllBlogs = () => {
         {isLoading
           ? [1, 2, 3, 4, 5, 6].map((_, i) => <Skeleton key={i} className="h-60 w-full" />)
           : allBlogs?.data?.blogs?.map((post) => (
-              <Card key={post._id} className="bg-gray-50">
-                <div className="relative px-2">
-                  <img
-                    src={post.image || "/default-blog.jpg"}
-                    alt={post.title}
-                    className="w-full object-cover rounded-2xl"
-                  />
-                </div>
-                <CardContent className="">
-                  <CardTitle className="text-lg font-bold">{post.title.length > 30 ? 
-                  post.title.substring(0, 40) + "..." : post.title}</CardTitle>
+            <Card key={post._id} className="bg-gray-50">
+
+              <div className="relative px-2">
+                <img
+                  src={post.image || "/default-blog.jpg"}
+                  alt={post.title}
+                  className="w-full object-cover rounded-2xl"
+                />
+              </div>
+
+              <CardContent className="">
+                <Link to={`/blog/${post.title}/${post._id}`}>
+                  <CardTitle className="text-lg font-bold">{post.title.length > 30 ?
+                    post.title.substring(0, 40) + "..." : post.title}
+                  </CardTitle>
                   <p className="text-sm text-gray-600">
                     {post.description.length > 100 ? post.description.substring(0, 100)
-                     + "..." : post.description}
+                      + "..." : post.description}
                   </p>
                   <div className="flex justify-between items-center">
-                  <Link to={`/blog/${post._id}`}>
                     <Button variant="link" className="">
                       Read More
                     </Button>
-                  </Link>
-                  <span className=" text-gray-600 px-2 py-1 text-xs rounded">
-                    {new Date(post.createdAt).toLocaleTimeString()}-
-                    {new Date(post.createdAt).toDateString()}
-                  </span>
+                    <span className=" text-gray-600 px-2 py-1 text-xs rounded">
+                      {new Date(post.createdAt).toLocaleTimeString()}-
+                      {new Date(post.createdAt).toDateString()}
+                    </span>
                   </div>
-                  
-                  <div className="flex items-center space-x-3 border-t pt-3">
-                    <Avatar>
-                      <AvatarImage src={post.user?.profilePic || "/default-avatar.jpg"} 
-                      alt={post.user?.username} />
-                      <AvatarFallback>{post.user?.username?.charAt(0) || "U"}</AvatarFallback>
-                    </Avatar>
-                    <div className="">
-                      <p className="text-sm font-medium">{post.user?.username}</p>
-                      <p className="text-xs text-gray-600">Views {post.views}</p>
-                    </div>
-                  </div>
+                </Link>
 
-                </CardContent>
-              </Card>
-            ))}
+                <div className="flex items-center space-x-3 border-t pt-3">
+                  <Avatar>
+                    <AvatarImage src={post.user?.profilePic || "/default-avatar.jpg"}
+                      alt={post.user?.username} />
+                    <AvatarFallback>{post.user?.username?.charAt(0) || "U"}</AvatarFallback>
+                  </Avatar>
+                  <div className="">
+                    <p className="text-sm font-medium">{post.user?.username}</p>
+                    <p className="text-xs text-gray-600">Views {post.views}</p>
+                  </div>
+                </div>
+
+              </CardContent>
+            </Card>
+          ))}
       </div>
     </div>
   );
