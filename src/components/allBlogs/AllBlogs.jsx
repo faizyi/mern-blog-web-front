@@ -9,7 +9,6 @@ import { Button } from "../ui/button";
 
 export const AllBlogs = () => {
   const { data: allBlogs, isLoading } = blogQuery();
-
   return (
     <div className="container mx-auto py-10 px-4">
       <h3 className="text-2xl font-semibold mb-6">Latest Posts</h3>

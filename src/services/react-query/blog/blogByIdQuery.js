@@ -14,6 +14,8 @@ export const BlogByIdQuery = (id) => {
             return error;
         }
     },
+    refetchOnWindowFocus: false,
+    retry: false,
     // staleTime: 24 * 60 * 60 * 1000,
     // cacheTime: 24 * 60 * 60 * 1000,
   })

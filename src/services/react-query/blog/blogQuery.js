@@ -10,9 +10,12 @@ export const blogQuery = () => {
                 return res
             }
         } catch (error) {
-            return null;
+            return {data: {blogs: []}};
         }
     },
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    retry: false,
     // staleTime: 24 * 60 * 60 * 1000,
     // cacheTime: 24 * 60 * 60 * 1000,
   })

@@ -29,3 +29,12 @@ export const getBlogById = async (id) => {
         throw error
     }
 }
+
+export const addComment = async (comment, id, userId) => {
+    try {
+        const res = await axiosHandler.post(`/blog/addComment/${id}`, {comment, userId});
+        return res
+    } catch (error) {
+        throw error
+    }
+}
