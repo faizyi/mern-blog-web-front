@@ -21,7 +21,6 @@ export const userProfileQuery = () => {
           return null;
         }
       } catch (error) {
-        console.error("Error fetching user profile:", error);
         return null;
       }
     },

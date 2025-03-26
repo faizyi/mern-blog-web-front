@@ -21,7 +21,7 @@ export const AllBlogs = () => {
       </div>
       <div className="grid md:grid-cols-3 gap-6">
         {isLoading
-          ? [1, 2, 3, 4, 5, 6].map((_, i) => <Skeleton key={i} className="h-60 w-full" />)
+          ? filteredBlogs?.map((_, i) => <Skeleton key={i} className="h-60 w-full" />)
           : filteredBlogs?.map((post) => (
             <Card key={post._id} className="bg-gray-50">
 
@@ -64,17 +64,16 @@ export const AllBlogs = () => {
                       alt={post.user?.username} />
                     <AvatarFallback>{post.user?.username?.charAt(0) || "U"}</AvatarFallback>
                   </Avatar>
-                  <div className="flex justify-between gap-10">
-                    <div >
+                  <div className="">
                     <p className="text-sm font-medium">{post.user?.username}</p>
-                    <p className="text-xs text-gray-600">Views {post.views}</p>
-                    </div>
+                    {/* <p className="text-xs text-gray-600">Views {post.views}</p> */}
                   </div>
                 </div>
 
               </CardContent>
             </Card>
-          ))}
+          ))
+          }
       </div>
     </div>
   );

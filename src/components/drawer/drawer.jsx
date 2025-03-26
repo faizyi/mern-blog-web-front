@@ -21,12 +21,10 @@ export const Drawer = () => {
       
       {/* Drawer Content */}
       <SheetContent side='right' className="overflow-y-auto ">
-        <SheetHeader>
+        <SheetHeader key={close}>
           <SheetTitle onClick={() => navigate("/")}>My Blog</SheetTitle>
           <div className=''></div>
           <SheetDescription>
-                    {/* Navigation Bar */}
-
           </SheetDescription>
         </SheetHeader>
         <div className="w-full py-4 px-6 flex justify-center">

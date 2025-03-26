@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 export const BlogCategory = ({setCategory}) => {
   return (
     <Select onValueChange={(value) => setCategory(value)}>
-    <SelectTrigger className="w-[440px]">
+    <SelectTrigger className="w-[100%]">
       <SelectValue placeholder="Select Blog Category" />
     </SelectTrigger>
     <SelectContent position=''>
