@@ -9,7 +9,8 @@ import { LoadingSpinner } from "@/components/loader/Loader";
 import { AlertError } from "@/utils/AlertError";
 export const AddComment = ({ userId}) => {
   const { comment, setComment, showCommentBox,
-     setShowCommentBox, handleClick, handleAddComment, isLoader, response, setResponse } = AddCommentHook({userId});
+     setShowCommentBox, handleClick, handleAddComment, 
+     isLoader, response, setResponse } = AddCommentHook({userId});
 
   return (
     <div className="relative">

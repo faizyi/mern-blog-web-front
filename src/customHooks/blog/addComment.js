@@ -3,7 +3,13 @@ import React, { useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { showLoader, hideLoader } from '@/redux/loader/LoaderSlice';
+import { userProfileQuery } from '@/services/react-query/userQuery';
 export const AddCommentHook = ({userId}) => {
+    const { data: userInfo, refetch, } = userProfileQuery();
+    const user = userInfo?.data.userInfo._id
+    
+    
+    
     const dispatch = useDispatch();
     const { id } = useParams();
     const [comment, setComment] = useState('');
@@ -14,12 +20,15 @@ export const AddCommentHook = ({userId}) => {
         setShowCommentBox(!showCommentBox);
     }
     const handleAddComment = async () => {
+        console.log(user, userId);
         if(comment === '') return
+        if(userId == user) return setResponse("You Can Not Comment")
         // setIsLoader(true);
         // dispatch(showLoader());
         try {
-            const res = await addComment(comment, id, userId);
+            const res = await addComment(comment, id, user);
             setResponse(res);
+            // await refetch();
             // setShowCommentBox(false);
             // dispatch(hideLoader());
             setComment('');

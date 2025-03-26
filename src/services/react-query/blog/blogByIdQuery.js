@@ -16,6 +16,10 @@ export const BlogByIdQuery = (id) => {
     },
     refetchOnWindowFocus: false,
     retry: false,
+    // refetchOnMount: false,
+    // retryOnMount: false,
+    // refetchInterval: false,
+    // refetchIntervalInBackground: false,
     // staleTime: 24 * 60 * 60 * 1000,
     // cacheTime: 24 * 60 * 60 * 1000,
   })

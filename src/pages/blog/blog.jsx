@@ -6,13 +6,13 @@ import { BlogContent } from "./blogContent";
 export const GetBlogById = () => {
     const { id } = useParams();
     const { data: blogById, isLoading } = BlogByIdQuery(id);
-    // console.log(blogById);
     const blog = blogById?.data?.blog;
     const user = blogById?.data?.blog?.user;
+    const comments = blogById?.data?.comments;
     return (
         <div>
             <BlogContent blog={blog} user={user} isLoading={isLoading} />
-            <BlogComments blogById={blogById} />
+            <BlogComments comments={comments} />
         </div>
     );
 };
