@@ -1,5 +1,5 @@
 import { useQuery, QueryClient } from '@tanstack/react-query'
-import { getAllBlog } from '../blog'
+import { getAllBlog } from '../../blog'
 export const blogQuery = () => {
   return useQuery({
     queryKey: ["allBlogs"],

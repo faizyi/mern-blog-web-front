@@ -20,3 +20,12 @@ export const getAllBlog = async () => {
         throw error
     }
 }
+
+export const getBlogById = async (id) => {
+    try {
+       const res = await axiosHandler.get(`/blog/${id}`);
+       return res 
+    } catch (error) {
+        throw error
+    }
+}

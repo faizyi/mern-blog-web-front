@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { showLoader, hideLoader } from '@/redux/loader/LoaderSlice';
-import { blogQuery } from '@/services/react-query/blogQuery';
+import { blogQuery } from '@/services/react-query/blog/blogQuery';
 export const CreateBlogHook = () => {
     const dispatch = useDispatch();
     const { refetch } = blogQuery();

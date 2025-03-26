@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 // import { formatDistanceToNow } from "date-fns";
-import { blogQuery } from "@/services/react-query/blogQuery";
+import { blogQuery } from "@/services/react-query/blog/blogQuery";
 import { Card, CardContent, CardTitle } from "../ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Skeleton } from "../ui/skeleton";
@@ -28,7 +28,7 @@ export const AllBlogs = () => {
               </div>
 
               <CardContent className="">
-                <Link to={`/blog/${post.title}/${post._id}`}>
+                <Link to={`/blog/${encodeURIComponent(post.title)}/${post._id}`}>
                   <CardTitle className="text-lg font-bold">{post.title.length > 30 ?
                     post.title.substring(0, 40) + "..." : post.title}
                   </CardTitle>

@@ -7,14 +7,14 @@ import { Signup } from './pages/Signup'
 import { Login } from './pages/Login'
 import { UserProfile } from './pages/userProfile'
 import { ProtectedRoute } from './services/ProtectedRoute'
-import { CreateBlog } from './pages/CreateBlog'
+import { CreateBlog } from './pages/blog/CreateBlog'
 import { PublicRoute } from './services/PublicRoute'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { queryClient } from './services/react-query/userQuery'
 import { Footer } from './components/footer/Footer'
 import { ForgotPassword } from './pages/password/ForgotPassword'
 import { ResetPassword } from './pages/password/ResetPassword'
-import { Blog } from './pages/blog'
+import GetBlogById from './pages/blog/blog'
 
 
 function App() {
@@ -30,7 +30,7 @@ function App() {
         <Route path='/forgot-password' element={<ForgotPassword/>}/>
         <Route path='/reset-password/:token' element={<ResetPassword/>}/>
         <Route path='/user/create-blog' element={<ProtectedRoute><CreateBlog/></ProtectedRoute>}/>
-        <Route path='/blog/:title/:id' element={<Blog/>}/>
+        <Route path='/blog/:title/:id' element={<GetBlogById/>}/>
         <Route path='/user/profile' element={<ProtectedRoute><UserProfile/></ProtectedRoute>}/>
       </Routes>
       <ReactQueryDevtools initialIsOpen={false} position='right'/>
