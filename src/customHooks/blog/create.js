@@ -8,6 +8,7 @@ export const CreateBlogHook = () => {
     const dispatch = useDispatch();
     const { refetch } = blogQuery();
     const [response, setResponse] = useState(null);
+    const [category, setCategory] = useState("");
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         defaultValues: {
             title: "",
@@ -29,6 +30,8 @@ export const CreateBlogHook = () => {
         const formData = new FormData();
         formData.append("title", data.title);
         formData.append("description", data.description);
+        formData.append("category", category)
+        if(!category) return
         if(file) formData.append("blogImage", file);
         try {
             const res = await createBlog(formData);
@@ -52,6 +55,8 @@ export const CreateBlogHook = () => {
         handleImageChange,
         handleSubmit,
         onSubmit,
-        response
+        response,
+        category,
+        setCategory
     }
 }

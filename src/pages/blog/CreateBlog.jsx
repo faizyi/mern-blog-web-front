@@ -8,13 +8,15 @@ import { CreateBlogHook } from "@/customHooks/blog/create";
 import { AlertError } from "@/utils/AlertError";
 import React from "react";
 import { useSelector } from "react-redux";
+import { BlogCategory } from "./blogCategory";
 
 export const CreateBlog = () => {
   const loader = useSelector((state) => state.loader.isLoader);
-  const { register, handleSubmit, errors, image, handleImageChange, onSubmit, response } = CreateBlogHook();
+  const { register, handleSubmit, errors, image, 
+    handleImageChange, onSubmit, response, category, setCategory } = CreateBlogHook();
 
   return (
-    <div className="flex justify-center items-center min-h-screen p-6 flex-col">
+    <div className="flex justify-center items-center min-h-screen p-6 flex-col mt-9">
       {response && (
         <div className="mb-4 w-full max-w-md mt-16">
           <AlertError response={response} />
@@ -48,6 +50,10 @@ export const CreateBlog = () => {
                 <Label className="text-lg font-medium">Title</Label>
                 <Input type="text" {...register("title", { required: true })} placeholder="Enter blog title" className="mt-2" />
                 {errors.title && <p className="text-red-500 text-sm">Title is required</p>}
+              </div>
+              <div>
+              <Label className="text-lg font-medium">Blog Category</Label>
+              <BlogCategory setCategory={setCategory}/>
               </div>
               <div>
                 <Label className="text-lg font-medium">Description</Label>
