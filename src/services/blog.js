@@ -23,10 +23,8 @@ export const getAllBlog = async () => {
 }
 
 export const getBlogById = async (id, userId) => {
-    console.log(userId, id);
-    
     try {
-       const res = await axiosHandler.post(`/blog/${id}`, {userId});
+       const res = await axiosHandler.get(`/blog/${id}`);
        return res 
     } catch (error) {
         throw error
