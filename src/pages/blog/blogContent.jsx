@@ -54,7 +54,7 @@ export const BlogContent = ({ blog, user, isLoading }) => {
                 </Avatar>
                 <div>
                   <p className="text-sm font-medium">Written by {user?.username}</p>
-                  <p className="text-xs text-gray-600">Views: {blog?.views}</p>
+                  {/* <p className="text-xs text-gray-600">Views: {blog?.views}</p> */}
                 </div>
               </div>
 

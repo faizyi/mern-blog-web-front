@@ -67,7 +67,7 @@ export const AllBlogs = () => {
                   </Avatar>
                   <div className="">
                     <p className="text-sm font-medium">{post.user?.username}</p>
-                    <p className="text-xs text-gray-600">Views {post.views}</p>
+                    {/* <p className="text-xs text-gray-600">Views {post.views}</p> */}
                   </div>
                 </div>
 
