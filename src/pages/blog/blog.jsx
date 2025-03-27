@@ -7,8 +7,6 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 export const GetBlogById = () => {
     const { id } = useParams();
     const { data: blogById, isLoading } = BlogByIdQuery(id);
-    console.log(blogById);
-    
     const blog = blogById?.data?.blog;
     const user = blogById?.data?.blog?.user;
     const comments = blogById?.data?.comments;

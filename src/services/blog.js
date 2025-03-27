@@ -22,7 +22,7 @@ export const getAllBlog = async () => {
 
 export const getBlogById = async (id) => {
     try {
-       const res = await axiosHandler.get(`/api/blog/${id}`);
+       const res = await axiosHandler.get(`/blog/${id}`);
        return res 
     } catch (error) {
         throw error

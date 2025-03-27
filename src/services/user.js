@@ -35,7 +35,7 @@ export const deleteUser = async () => {
     }
 }
 
-export const getUserProfile = async (hasAuthError, setHasAuthError) =>{
+export const getUserProfile = async () =>{
     try {
         const res = await axiosHandler.get("/user/profile",{
             withCredentials: true

@@ -21,7 +21,7 @@ export const AllBlogs = () => {
       </div>
       <div className="grid md:grid-cols-3 gap-6">
         {isLoading
-          ? filteredBlogs?.map((_, i) => <Skeleton key={i} className="h-60 w-full" />)
+          ? [1,2].map((_, i) => <Skeleton key={i} className="h-60 w-full" />)
           : filteredBlogs?.map((post) => (
             <Card key={post._id} className="bg-gray-50">
 
