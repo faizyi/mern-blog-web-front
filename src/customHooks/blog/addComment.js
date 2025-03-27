@@ -19,7 +19,7 @@ export const AddCommentHook = ({userId}) => {
     const handleAddComment = async () => {
         console.log(user, userId);
         if(comment === '') return
-        if(!userId) return setResponse("You are Unauthorized . Please login")
+        if(userId == user) return setResponse("You can't comment your own blog")
         try {
             const res = await addComment(comment, id, userId);
             setResponse(res);
