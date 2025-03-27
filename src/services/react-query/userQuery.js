@@ -9,7 +9,8 @@ export const userProfileQuery = () => {
         const res = await getUserProfile();
         if (res.status === 200) {
           return res;
-        } else if (res.status === 401) {
+        } 
+        else if (res.status === 401) {
           localStorage.removeItem("user");
           // navigate("/login");
           queryClient.removeQueries(["userInfo"]);

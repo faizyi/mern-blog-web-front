@@ -17,11 +17,9 @@ export const AddCommentHook = ({userId}) => {
         setShowCommentBox(!showCommentBox);
     }
     const handleAddComment = async () => {
-        console.log(user, userId);
         if(comment === '') return
-        if(userId == user) return setResponse("You can't comment your own blog")
         try {
-            const res = await addComment(comment, id, userId);
+            const res = await addComment(comment, id, userId, user);
             setResponse(res);
             setComment('');
         } catch (error) {

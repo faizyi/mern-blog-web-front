@@ -24,16 +24,16 @@ export const getAllBlog = async () => {
 
 export const getBlogById = async (id, userId) => {
     try {
-       const res = await axiosHandler.get(`/blog/${id}`);
+       const res = await axiosHandler.post(`/blog/${id}`, {userId});
        return res 
     } catch (error) {
         throw error
     }
 }
 
-export const addComment = async (comment, id, userId) => {
+export const addComment = async (comment, id, loginUserId, blogUserId) => {
     try {
-        const res = await axiosHandler.post(`/blog/addComment/${id}`, {comment, userId});
+        const res = await axiosHandler.post(`/blog/addComment/${id}`, {comment, loginUserId, blogUserId});
         return res
     } catch (error) {
         throw error

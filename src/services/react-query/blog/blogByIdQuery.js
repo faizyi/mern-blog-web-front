@@ -7,9 +7,7 @@ export const BlogByIdQuery = (id, userId) => {
     queryFn: async () => {
         try {
             const res = await getBlogById(id, userId);
-            if(res.status == 201) {
-                return res
-            }
+            return res
         } catch (error) {
             return error;
         }
