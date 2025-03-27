@@ -19,7 +19,7 @@ export const AddCommentHook = ({userId}) => {
     const handleAddComment = async () => {
         console.log(user, userId);
         if(comment === '') return
-        if(userId == user) return setResponse("You can't comment your own blog")
+        // if(userId == user) return setResponse("You can't comment your own blog")
         // setIsLoader(true);
         // dispatch(showLoader());
         try {
