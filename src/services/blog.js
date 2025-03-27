@@ -13,7 +13,9 @@ export const createBlog = async (blogData) => {
 
 export const getAllBlog = async () => {
     try {
-       const res = await axiosHandler.get("/blog/all-blogs");
+       const res = await axiosHandler.get("/blog/all-blogs", {
+        withCredentials: false
+       });
        return res 
     } catch (error) {
         throw error
@@ -22,7 +24,9 @@ export const getAllBlog = async () => {
 
 export const getBlogById = async (id) => {
     try {
-       const res = await axiosHandler.get(`/blog/${id}`);
+       const res = await axiosHandler.get(`/blog/${id}`, {
+        withCredentials: false
+       });
        return res 
     } catch (error) {
         throw error
