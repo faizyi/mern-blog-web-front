@@ -19,21 +19,14 @@ export const AddCommentHook = ({userId}) => {
     const handleAddComment = async () => {
         console.log(user, userId);
         if(comment === '') return
-        // if(userId == user) return setResponse("You can't comment your own blog")
-        // setIsLoader(true);
-        // dispatch(showLoader());
+        if(!userId) return setResponse("You are Unauthorized . Please login")
         try {
-            const res = await addComment(comment, id, user);
+            const res = await addComment(comment, id, userId);
             setResponse(res);
-            // await refetch();
-            // setShowCommentBox(false);
-            // dispatch(hideLoader());
             setComment('');
-            // await refetch();
         } catch (error) {
             if(error.status == 401) localStorage.removeItem("user");
             setComment('');
-            // dispatch(hideLoader());
             setResponse(error);
         } 
     }
