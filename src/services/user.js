@@ -19,7 +19,9 @@ export const login = async (data) =>{
 
 export const logout = async ()=>{
     try {
-        const res = await axiosHandler.post("/user/logout");
+        const res = await axiosHandler.get("/user/logout", {
+            withCredentials: true
+        });
         return res
     } catch (error) {
         return error
