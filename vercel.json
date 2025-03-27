@@ -1,8 +1,9 @@
 {
     "rewrites": [
-        {
-            "source": "/(.*)",
-            "destination": "/"
-        }
+      {
+        "source": "/api/:path*",
+        "destination": "https://blog-backend-two-psi.vercel.app/api/:path*"
+      }
     ]
-}
+  }
+  

@@ -30,7 +30,7 @@ function App() {
         <Route path='/forgot-password' element={<ForgotPassword/>}/>
         <Route path='/reset-password/:token' element={<ResetPassword/>}/>
         <Route path='/user/create-blog' element={<ProtectedRoute><CreateBlog/></ProtectedRoute>}/>
-        <Route path='/blog/:id' element={<GetBlogById/>}/>
+        <Route path='/blog/:title/:id' element={<GetBlogById/>}/>
         <Route path='/user/profile' element={<ProtectedRoute><UserProfile/></ProtectedRoute>}/>
       </Routes>
       <ReactQueryDevtools initialIsOpen={false} position='right'/>
