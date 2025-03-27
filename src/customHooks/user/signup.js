@@ -25,7 +25,8 @@ export const SignupHook = () => {
         }
     }
       const handleLogout = async () => {
-          const res = await logout();
+          await logout();
+          document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
           localStorage.removeItem('user');
           queryClient.removeQueries(['userInfo']);
           navigate("/");
