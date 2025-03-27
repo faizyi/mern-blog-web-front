@@ -4,9 +4,12 @@ import { BlogByIdQuery } from "@/services/react-query/blog/blogByIdQuery";
 import { BlogComments } from "./comments";
 import { BlogContent } from "./blogContent";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import { userProfileQuery } from "@/services/react-query/userQuery";
 export const GetBlogById = () => {
     const { id } = useParams();
-    const { data: blogById, isLoading } = BlogByIdQuery(id);
+    const { data: userInfo, } = userProfileQuery();
+    const userId = userInfo?.data.userInfo._id
+    const { data: blogById, isLoading } = BlogByIdQuery(id, userId);
     const blog = blogById?.data?.blog;
     const user = blogById?.data?.blog?.user;
     const comments = blogById?.data?.comments;

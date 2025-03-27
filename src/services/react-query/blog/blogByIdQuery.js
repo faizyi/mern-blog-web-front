@@ -1,12 +1,12 @@
 import { getBlogById } from "@/services/blog";
 import { useQuery, QueryClient } from "@tanstack/react-query"
 
-export const BlogByIdQuery = (id) => {
+export const BlogByIdQuery = (id, userId) => {
   return useQuery({
     queryKey: ["blogById"],
     queryFn: async () => {
         try {
-            const res = await getBlogById(id);
+            const res = await getBlogById(id, userId);
             if(res.status == 201) {
                 return res
             }
