@@ -26,7 +26,7 @@ export const BlogContent = ({ blog, user, isLoading }) => {
           <img
             src={blog?.image || "/default-blog.jpg"}
             alt={blog?.title}
-            className="w-full h-[500px] object-cover rounded-lg shadow-md"
+            className="w-full h-[100%] object-cover rounded-lg shadow-md"
           />
 
           {/* Blog Details */}

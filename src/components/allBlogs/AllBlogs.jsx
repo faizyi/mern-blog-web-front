@@ -38,7 +38,8 @@ export const AllBlogs = () => {
                 <Link to={`/blog/${encodeURIComponent(post.title)}/${post._id}`}>
                   <CardTitle className="text-lg font-bold">{post.title.length > 30 ?
                     post.title.substring(0, 40) + "..." : post.title} 
-                    <p className="text-[10px] px-16 py-1 border border-[#D2D2D1] bg-[#EFEFEE] text-[#1A1A19] 
+                    <p className="text-[10px] px-1 py-1 border border-[#D2D2D1]
+                    text-center bg-[#EFEFEE] text-[#1A1A19] 
                     rounded-full">
                   {post.category}
                 </p>
