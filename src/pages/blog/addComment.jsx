@@ -11,7 +11,6 @@ export const AddComment = ({ userId}) => {
   const { comment, setComment, showCommentBox,
      setShowCommentBox, handleClick, handleAddComment, 
      isLoader, response, setResponse } = AddCommentHook({userId});
-
   return (
     <div className="relative">
       

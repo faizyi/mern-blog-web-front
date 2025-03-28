@@ -7,7 +7,7 @@ import { AddComment } from "./addComment";
 
 export const BlogContent = ({ blog, user, isLoading }) => {
   const loader = useSelector((state) => state.loader.isLoader);
-
+  const isUser = localStorage.getItem("user")
   return (
     <div className="container mx-auto py-10 px-4 mt-20">
       {loader || isLoading ? (
@@ -37,14 +37,14 @@ export const BlogContent = ({ blog, user, isLoading }) => {
               {/* Blog Description */}
               <p className="text-gray-700 text-lg mb-6">{blog?.description}</p>
 
-               {/* Blog Meta */}
-               <div className="flex justify-between items-center text-sm text-gray-600 mb-4">
+              {/* Blog Meta */}
+              <div className="flex justify-between items-center text-sm text-gray-600 mb-4">
                 <span>
                   Published on {new Date(blog?.createdAt).toLocaleDateString()} - {new Date(blog?.createdAt).toLocaleTimeString()}
                 </span>
-                <div>
+                {isUser && <div>
                   <AddComment userId={blog?.user?._id} />
-                </div>
+                </div>}
               </div>
               {/* Author Details */}
               <div className="flex items-center space-x-3 border-t pt-3">

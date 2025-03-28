@@ -40,8 +40,6 @@ export const deleteUser = async () => {
 export const getUserProfile = async () =>{
     try {
         const res = await axiosHandler.get("/user/profile")
-        console.log(res);
-        
         return res
     } catch (error) {
         localStorage.removeItem("user");

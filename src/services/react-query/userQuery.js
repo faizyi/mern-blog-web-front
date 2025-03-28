@@ -1,6 +1,5 @@
 import { QueryClient, useQuery} from '@tanstack/react-query'
 import { getUserProfile } from '../user';
-import { useState } from 'react';
 export const userProfileQuery = () => {
   return useQuery({
     queryKey: ["userInfo"],
@@ -9,16 +8,15 @@ export const userProfileQuery = () => {
         const res = await getUserProfile();
         if (res.status === 200) {
           return res;
-        } 
-        else if (res.status === 401) {
+        } else if (res.status === 401) {
           localStorage.removeItem("user");
-          // navigate("/login");
-          queryClient.removeQueries(["userInfo"]);
-          return res;
-        } else {
-          return null;
+          return null; // Prevent errors and unnecessary API calls
         }
       } catch (error) {
+        if (!token) {
+          return null;
+        }
+        console.error("Profile Fetch Error:", error);
         return null;
       }
     },
