@@ -34,9 +34,9 @@ export const UserProfile = ({ handleLogout }) => {
               Profile
             </DropdownMenuItem>
           </Link>
-          <Link to="/">
+          <Link to="/user/manage-blogs">
             <DropdownMenuItem className="hover:bg-gray-100 px-4 py-2 cursor-pointer transition duration-200">
-              Blogs
+              Manage Blogs
             </DropdownMenuItem>
           </Link>
           <DropdownMenuItem

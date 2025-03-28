@@ -14,10 +14,12 @@ export const GetBlogById = () => {
     const user = blogById?.data?.blog?.user;
     const comments = blogById?.data?.comments;
     return (
-        <div>
+        <div className="mt-29">
             {/* <div className="absolute top-33 bottom-0 left-30"><IoMdArrowRoundBack/></div> */}
             <BlogContent blog={blog} user={user} isLoading={isLoading} />
+            <div className="mt-19">
             <BlogComments comments={comments} />
+            </div>
         </div>
     );
 };

@@ -39,3 +39,15 @@ export const addComment = async (comment, id, loginUserId, blogUserId) => {
         throw error
     }
 }
+
+
+export const delBlog = async (id) => {
+    const blogId = id
+    
+    try {
+        const res = await axiosHandler.delete("/blog/del-blog", {blogId});
+        return res
+    } catch (error) {
+        throw error
+    }
+}

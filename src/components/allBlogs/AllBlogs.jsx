@@ -39,7 +39,7 @@ export const AllBlogs = () => {
                     <img
                       src={post.image || "/default-blog.jpg"}
                       alt={post.title}
-                      className="w-full object-cover rounded-2xl"
+                      className="w-full h-[150px] object-cover rounded-2xl"
                     />
                   </div>
 

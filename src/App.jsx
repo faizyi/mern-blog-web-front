@@ -15,8 +15,7 @@ import { Footer } from './components/footer/Footer'
 import { ForgotPassword } from './pages/password/ForgotPassword'
 import { ResetPassword } from './pages/password/ResetPassword'
 import GetBlogById from './pages/blog/blog'
-
-
+import { ManageBlogs } from './pages/manageBlogs/ManageBlogs'
 function App() {
   return (
     <div>
@@ -32,6 +31,7 @@ function App() {
         <Route path='/user/create-blog' element={<ProtectedRoute><CreateBlog/></ProtectedRoute>}/>
         <Route path='/blog/:title/:id' element={<GetBlogById/>}/>
         <Route path='/user/profile' element={<ProtectedRoute><UserProfile/></ProtectedRoute>}/>
+        <Route path='/user/manage-blogs' element={<ProtectedRoute><ManageBlogs/></ProtectedRoute>}/>
       </Routes>
       <ReactQueryDevtools initialIsOpen={false} position='right'/>
       </QueryClientProvider>
