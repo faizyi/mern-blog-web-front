@@ -47,6 +47,9 @@ export const Drawer = () => {
               <Link to="/user/profile" className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 transition">
                 <span>Profile</span>
               </Link>
+              <Link to="/user/manage-blogs" className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 transition">
+                <span>Manage Blogs</span>
+              </Link>
                 <Button className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 transition" variant="outline" onClick={handleLogout}>Logout</Button>
             </div>
           ) : (

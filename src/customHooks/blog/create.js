@@ -38,7 +38,7 @@ export const CreateBlogHook = () => {
             await refetch();
             setResponse(res);
             dispatch(hideLoader());
-            reset();
+            // reset();
         } catch (error) {
             if(error.status == 401) localStorage.removeItem("user");
             dispatch(hideLoader());

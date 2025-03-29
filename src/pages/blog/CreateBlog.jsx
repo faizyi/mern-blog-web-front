@@ -16,7 +16,7 @@ export const CreateBlog = () => {
     handleImageChange, onSubmit, response, category, setCategory } = CreateBlogHook();
 
   return (
-    <div className="flex justify-center items-center min-h-screen p-6 flex-col mt-9">
+    <div className="flex justify-center items-center min-h-screen p-6 flex-col mt-19">
       {response && (
         <div className="mb-4 w-full max-w-md mt-16">
           <AlertError response={response} />
@@ -72,7 +72,8 @@ export const CreateBlog = () => {
               {loader ? (
                 <LoadingSpinner />
               ) : (
-                <Button type="submit" className="bg-amber-500 text-white py-2 px-6 rounded-lg hover:bg-amber-600 transition duration-200">
+                <Button type="submit" 
+                className="bg-amber-500 text-white py-2 px-6 rounded-lg hover:bg-amber-600 transition duration-200">
                   Publish Blog
                 </Button>
               )}

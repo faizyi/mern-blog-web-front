@@ -42,10 +42,24 @@ export const addComment = async (comment, id, loginUserId, blogUserId) => {
 
 
 export const delBlog = async (id) => {
-    const blogId = id
+    console.log(id);
     
     try {
-        const res = await axiosHandler.delete("/blog/del-blog", {blogId});
+        const res = await axiosHandler.delete(`/blog/del-blog/${id}`);
+        return res
+    } catch (error) {
+        throw error
+    }
+}
+
+export const editBlog = async (data, file, id) => {
+    const formData = new FormData();
+    formData.append("data", JSON.stringify(data));
+    formData.append("blogImage", file);
+    try {
+        const res = await axiosHandler.put(`/blog/edit-blog/${id}`, formData, {
+            headers: {"Content-Type": "multipart/formdata"}
+        });
         return res
     } catch (error) {
         throw error
