@@ -65,3 +65,15 @@ export const editBlog = async (data, file, id) => {
         throw error
     }
 }
+
+
+export const generateBlogDescription = async (title) => {
+    console.log(title);
+    
+    try {
+        const res = await axiosHandler.post("/blog/ai/generate-blog-desc", {title})
+           return res
+    } catch (error) {
+        throw error
+    }
+}

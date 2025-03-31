@@ -2,7 +2,7 @@ import React from 'react'
 import { Button } from '../ui/button'
 import { AspectRatio } from '../ui/aspect-ratio'
 import { Link } from 'react-router-dom'
-
+import heroImg from "../../../public/assets/heroImage/hero.jpg"
 export const Hero = () => {
   return (
     <section className="w-full mt-30 h-80"> 

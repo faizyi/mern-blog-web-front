@@ -9,20 +9,21 @@ import { AlertError } from "@/utils/AlertError";
 import React from "react";
 import { useSelector } from "react-redux";
 import { BlogCategory } from "./blogCategory";
+import { FaMagic } from "react-icons/fa";  
 
 export const CreateBlog = () => {
   const loader = useSelector((state) => state.loader.isLoader);
-  const { register, handleSubmit, errors, image, 
-    handleImageChange, onSubmit, response, category, setCategory } = CreateBlogHook();
+  const { register, handleSubmit, errors, image, handleImageChange, 
+    onSubmit, response, category, setCategory, handleGenerate, isGenerating } = CreateBlogHook();
 
   return (
     <div className="flex justify-center items-center min-h-screen p-6 flex-col mt-19">
       {response && (
-        <div className="mb-4 w-full max-w-md mt-16">
+        <div className="mb-4 w-full max-w-md mt-1">
           <AlertError response={response} />
         </div>
       )}
-      <Card className="w-full max-w-5xl bg-gray-50 rounded-2xl p-8">
+      <Card className="w-full max-w-5xl bg-gray-50 rounded-2xl p-8 shadow-lg">
         <CardHeader className="text-center mb-6">
           <CardTitle className="text-3xl font-semibold text-gray-800">Create a Blog</CardTitle>
         </CardHeader>
@@ -44,19 +45,34 @@ export const CreateBlog = () => {
               </label>
             </div>
 
-            {/* right Section - Title & Description */}
+            {/* Right Section - Title & Description */}
             <div className="space-y-6">
               <div>
                 <Label className="text-lg font-medium">Title</Label>
-                <Input type="text" {...register("title", { required: true })} placeholder="Enter blog title" className="mt-2" />
-                {errors.title && <p className="text-red-500 text-sm">Title is required</p>}
+                <Input 
+                  type="text" 
+                  {...register("title", { required: true })} 
+                  placeholder="Enter blog title" 
+                  className="mt-2" 
+                />
+                {errors.title && <p className="text-red-500 text-sm">{errors.title.message}</p>}
               </div>
               <div>
-              <Label className="text-lg font-medium">Blog Category</Label>
-              <BlogCategory setCategory={setCategory}/>
+                <Label className="text-lg font-medium">Blog Category</Label>
+                <BlogCategory setCategory={setCategory}/>
               </div>
               <div>
-                <Label className="text-lg font-medium">Description</Label>
+                <div className="flex justify-between items-center">
+                  <Label className="text-lg font-medium">Description</Label>
+                  <Button 
+                    onClick={handleGenerate} 
+                    disabled={isGenerating}
+                    className="bg-purple-600 text-white px-4 py-2 rounded-md flex items-center 
+                     gap-2 hover:bg-purple-700 transition"
+                  >
+                    {isGenerating ?   <LoadingSpinner size="sm" /> : <FaMagic /> } AI Generate
+                  </Button>
+                </div>
                 <Textarea
                   placeholder="Write your blog description..."
                   {...register("description", { required: true })}
@@ -73,7 +89,8 @@ export const CreateBlog = () => {
                 <LoadingSpinner />
               ) : (
                 <Button type="submit" 
-                className="bg-amber-500 text-white py-2 px-6 rounded-lg hover:bg-amber-600 transition duration-200">
+                className="bg-amber-500 text-white py-2 px-6 rounded-lg hover:bg-amber-600 
+                transition duration-200">
                   Publish Blog
                 </Button>
               )}
