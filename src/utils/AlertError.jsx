@@ -18,12 +18,12 @@ export const AlertError = ({ response, reset }) => {
             dispatch(hideLoader());
 
             // Hide the alert after 3 seconds
-            const timer = setTimeout(() => {
-                setShow(false);
-                if (reset) reset(); // Reset response if needed
-            }, 3000);
+            // const timer = setTimeout(() => {
+            //     setShow(false);
+            //     // if (reset) reset(); // Reset response if needed
+            // }, 3000);
 
-            return () => clearTimeout(timer); // Cleanup timeout
+            // return () => clearTimeout(timer); // Cleanup timeout
         }
     }, [response, dispatch]);
 

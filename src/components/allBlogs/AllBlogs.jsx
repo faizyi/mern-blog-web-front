@@ -10,13 +10,11 @@ import { BlogCategories } from "./blogCategories";
 export const AllBlogs = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const { data: allBlogs, isLoading } = blogQuery();
-
   const blogs = allBlogs?.data?.blogs || [];
   const filteredBlogs =
     selectedCategory === "All"
       ? blogs
       : blogs.filter((blog) => blog.category === selectedCategory);
-
   return (
     <div className="container mx-auto py-10 px-4">
       <h3 className="text-2xl font-semibold mb-6">Latest Posts</h3>

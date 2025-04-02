@@ -2,10 +2,11 @@ import React from 'react'
 import { Button } from '../ui/button'
 import { AspectRatio } from '../ui/aspect-ratio'
 import { Link } from 'react-router-dom'
-import heroImg from "../../../public/assets/heroImage/hero.jpg"
+import heroImg from "../../../public/assets/heroImage/hero.avif"
 export const Hero = () => {
+  const user = localStorage.getItem("user");
   return (
-    <section className="w-full mt-30 h-80"> 
+    <section className="w-full mt-30 h-80">
       {/* Image Wrapper with Rounded Corners */}
       {/* <div className="w-full rounded-md overflow-hidden">
         <AspectRatio ratio={26 / 9}>
@@ -25,8 +26,12 @@ export const Hero = () => {
          mt-2">
           Stay informed with the latest insights, stories, and trends.
         </p>
-        <Link to={"/login"}><Button className="bg-amber-400 mt-3 text-black px-5 py-2 rounded-md
-         hover:bg-amber-300 transition duration-200">Get Started</Button></Link>
+        {user ?
+          <Link to={"/login"}><Button className="bg-amber-400 mt-3 text-black px-5 py-2 rounded-md
+                hover:bg-amber-300 transition duration-200">Create Blog</Button></Link> :
+          <Link to={"/login"}><Button className="bg-amber-400 mt-3 text-black px-5 py-2 rounded-md
+                hover:bg-amber-300 transition duration-200">Get Started</Button></Link>}
+
       </div>
     </section>
   )

@@ -17,12 +17,12 @@ export const Header = () => {
           {/* Logo */}
           <Link to="/">
             <h1 className="text-xl font-bold text-white transition duration-200">
-              My Blog
+            InsightSphere
             </h1>
           </Link>
 
           <div className="flex items-center gap-4">
-            <BlogSerach />
+            {/* <BlogSerach /> */}
 
             {/* Mobile Menu */}
             <div className="sm:flex md:hidden  lg:hidden">
