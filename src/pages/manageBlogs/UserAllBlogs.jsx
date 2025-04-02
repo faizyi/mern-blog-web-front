@@ -1,81 +1,88 @@
 import { LoadingSpinner } from '@/components/loader/Loader';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Table, TableBody, TableCaption, TableCell, TableHead, 
-TableHeader, TableRow } from '@/components/ui/table';
+import {
+    Table, TableBody, TableCaption, TableCell, TableHead,
+    TableHeader, TableRow
+} from '@/components/ui/table';
 import { UserAllBlogsHook } from '@/customHooks/blog/UserAllBlogs';
 import { useSelector } from 'react-redux';
 import { MdDeleteOutline } from "react-icons/md";
 import { EditBlog } from './EditBlog';
+
 export const UserAllBlogs = () => {
     const loader = useSelector((state) => state.loader.isLoader);
-    const { isLoading, userBlog, handleDelete, response} = UserAllBlogsHook();    
-  return (
-    <div className=''>
-    { loader ? <LoadingSpinner/> :
-    <Table className={"container"}>
-        <TableCaption>A list of your Blogs</TableCaption>
-        <TableHeader>
-            <TableRow>
-                <TableHead className={"font-bold"}>No.</TableHead>
-                <TableHead className={"font-bold"}>Image</TableHead>
-                <TableHead className={"font-bold"}>Title</TableHead>
-                <TableHead className={"font-bold"}>Category</TableHead>
-                <TableHead className={"font-bold"}>Description</TableHead>
-                <TableHead className={"font-bold"}>Views</TableHead>
-                {/* <TableHead className={"font-bold"}>Comments</TableHead> */}
-                <TableHead className={"font-bold"}>Read</TableHead>
-                <TableHead className="text-right font-bold">Settings</TableHead>
-            </TableRow>
-        </TableHeader>
-        <TableBody>
-            {isLoading ? 
-                // Show skeleton loading when data is being fetched
-                Array.from({length: userBlog.length || 6}).map((_, i)=>(
-                    <TableRow key={i}>
-                    <TableCell colSpan="7">
-                        <Skeleton key={i} className="h-8 w-full" />
-                    </TableCell>
-                </TableRow>
-                )
-            ) : userBlog.length > 0 ? (
-                // Show user's blogs if available
-                userBlog.map((blog, index) => (
-                    <TableRow key={blog._id}>
-                        <TableCell className="font-medium">{index + 1}</TableCell>
-                        <TableCell>
-                            <img 
-                                src={blog.image || "/default-blog.jpg"}
-                                alt={blog.title} 
-                                className="w-10 h-10 object-cover rounded-2xl"
-                            />
-                        </TableCell>
-                        <TableCell>{blog.title.slice(0,10)}...</TableCell>
-                        <TableCell>{blog.category}</TableCell>
-                        <TableCell>{blog.description.slice(0, 20)}...</TableCell>
-                        <TableCell>{blog.views}</TableCell>
-                        {/* <TableCell>{blog.comment}</TableCell> */}
-                        <TableCell>
-                            <a href={`/blog/${blog.title}/${blog._id}`} className="text-blue-500">View</a>
-                        </TableCell>
-                        <TableCell className="text-right">
-                            <EditBlog blogId={blog}/>
-                            <Button onClick={ () => handleDelete(blog._id)} className="bg-red-700
-                             hover:bg-red-500 text-[10px] text-white ml-4"><MdDeleteOutline /></Button>
-                        </TableCell>
-                    </TableRow>
-                ))
+    const { isLoading, userBlog, handleDelete } = UserAllBlogsHook();
+
+    return (
+        <div className="container mx-auto p-6 bg-white shadow-lg rounded-lg max-h-[600px] overflow-y-auto">
+            {loader ? (
+                <LoadingSpinner />
             ) : (
-                // Show message if no blogs found
-                <TableRow>
-                    <TableCell colSpan="7" className="text-center">
-                        No blogs found.
-                    </TableCell>
-                </TableRow>
+                <Table className="w-full border border-gray-200 rounded-lg overflow-hidden">
+                    <TableCaption className="text-lg font-semibold text-gray-700">Your Blogs</TableCaption>
+                    <TableHeader className="bg-gray-100">
+                        <TableRow>
+                            <TableHead className="font-bold text-gray-700">No.</TableHead>
+                            <TableHead className="font-bold text-gray-700">Image</TableHead>
+                            <TableHead className="font-bold text-gray-700">Title</TableHead>
+                            <TableHead className="font-bold text-gray-700">Category</TableHead>
+                            <TableHead className="font-bold text-gray-700">Description</TableHead>
+                            <TableHead className="font-bold text-gray-700">Views</TableHead>
+                            <TableHead className="font-bold text-gray-700">Read</TableHead>
+                            <TableHead className="text-right font-bold text-gray-700">Actions</TableHead>
+                        </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                        {isLoading ? (
+                            Array.from({ length: userBlog.length || 6 }).map((_, i) => (
+                                <TableRow key={i}>
+                                    <TableCell colSpan="8">
+                                        <Skeleton className="h-10 w-full rounded-md" />
+                                    </TableCell>
+                                </TableRow>
+                            ))
+                        ) : userBlog.length > 0 ? (
+                            userBlog.map((blog, index) => (
+                                <TableRow key={blog._id} className="hover:bg-gray-50 transition">
+                                    <TableCell className="font-medium text-gray-900">{index + 1}</TableCell>
+                                    <TableCell>
+                                        <img
+                                            src={blog.image || "/default-blog.jpg"}
+                                            alt={blog.title}
+                                            className="w-12 h-12 object-cover rounded-lg shadow-md"
+                                        />
+                                    </TableCell>
+                                    <TableCell className="font-semibold text-gray-800">{blog.title.slice(0, 10)}...</TableCell>
+                                    <TableCell className="text-gray-700">{blog.category}</TableCell>
+                                    <TableCell className="text-gray-600">{blog.description.slice(0, 30)}...</TableCell>
+                                    <TableCell className="text-gray-800 font-medium">{blog.views}</TableCell>
+                                    <TableCell>
+                                        <a href={`/blog/${blog.title}/${blog._id}`} className="text-blue-600
+                                         hover:underline">View</a>
+                                    </TableCell>
+                                    <TableCell className="text-right flex gap-3 justify-end">
+                                        <EditBlog blogId={blog} />
+                                        <Button
+                                            onClick={() => handleDelete(blog._id)}
+                                            className="bg-red-600 hover:bg-red-500 text-white px-3 py-2
+                                             rounded-lg shadow-md transition"
+                                        >
+                                            <MdDeleteOutline size={18} />
+                                        </Button>
+                                    </TableCell>
+                                </TableRow>
+                            ))
+                        ) : (
+                            <TableRow>
+                                <TableCell colSpan="8" className="text-center text-gray-600 py-4">
+                                    No blogs found.
+                                </TableCell>
+                            </TableRow>
+                        )}
+                    </TableBody>
+                </Table>
             )}
-        </TableBody>
-    </Table>
-}
-    </div>
-  );
+        </div>
+    );
 };

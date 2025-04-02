@@ -1,38 +1,47 @@
-import React from 'react'
-import { Button } from '../ui/button'
-import { AspectRatio } from '../ui/aspect-ratio'
-import { Link } from 'react-router-dom'
-import heroImg from "../../../public/assets/heroImage/hero.avif"
+import React from "react";
+import { Button } from "../ui/button";
+import { Link } from "react-router-dom";
+import heroImg from "../../../public/assets/heroImage/hero.avif";
+
 export const Hero = () => {
   const user = localStorage.getItem("user");
-  return (
-    <section className="w-full mt-30 h-80">
-      {/* Image Wrapper with Rounded Corners */}
-      {/* <div className="w-full rounded-md overflow-hidden">
-        <AspectRatio ratio={26 / 9}>
-        </AspectRatio>
-      </div> */}
 
-      {/* Centered Text Content */}
-      <div className="flex flex-col h-80 items-center justify-center text-center
-       text-black px-6">
-        <h2 className="font-bold 
-        // text-sm:text-2xl md:text-3xl 
-        text-4xl">
+  return (
+    <section className="relative flex flex-col-reverse md:flex-row items-center
+     justify-between px-8 py-12 md:px-16 lg:px-24 h-auto md:h-[460px] bg-gray-100 rounded-lg
+      shadow-lg mt-25 mb-9">
+      {/* Left Text Content */}
+      <div className="text-center md:text-left max-w-xl">
+        <h2 className="font-bold text-3xl sm:text-4xl md:text-5xl text-gray-900 leading-tight">
           Welcome to Our Blog
         </h2>
-        <p className="text-lg 
-        // sm:text-base md:text-lg
-         mt-2">
+        <p className="text-lg sm:text-base md:text-lg mt-4 text-gray-700">
           Stay informed with the latest insights, stories, and trends.
         </p>
-        {user ?
-          <Link to={"/login"}><Button className="bg-amber-400 mt-3 text-black px-5 py-2 rounded-md
-                hover:bg-amber-300 transition duration-200">Create Blog</Button></Link> :
-          <Link to={"/login"}><Button className="bg-amber-400 mt-3 text-black px-5 py-2 rounded-md
-                hover:bg-amber-300 transition duration-200">Get Started</Button></Link>}
 
+        {user ? (
+          <Link to="/user/create-blog">
+            <Button className="bg-amber-500 mt-6 text-white px-6 py-3 rounded-lg hover:bg-amber-400 transition duration-200 shadow-md">
+              Create Blog
+            </Button>
+          </Link>
+        ) : (
+          <Link to="/login">
+            <Button className="bg-amber-500 mt-6 text-white px-6 py-3 rounded-lg hover:bg-amber-400 transition duration-200 shadow-md">
+              Get Started
+            </Button>
+          </Link>
+        )}
       </div>
+
+      {/* Right Image */}
+      {/* <div className="w-full md:w-1/2 flex justify-center md:justify-end"> */}
+        <img
+          src={heroImg}
+          alt="Hero"
+          className="object-cover rounded-2xl w-full md:w-[500px] h-[150px] md:h-[400px] shadow-lg"
+        />
+      {/* </div> */}
     </section>
-  )
-}
+  );
+};

@@ -33,7 +33,7 @@ export const AlertError = ({ response, reset }) => {
         <Alert 
             className={`p-3 rounded-lg border transition-opacity duration-500 ease-in-out
             ${show ? "bg-red-100 text-red-700 border-red-300" : "bg-green-100 text-green-700 border-green-300"}`}>
-            <AlertTitle className="font-bold">{response?.status === 200 ? "Success" : "Error"}</AlertTitle>
+            <AlertTitle className="font-bold">{response?.status === 200 || response.status === 201 ? "Success" : "Error"}</AlertTitle>
             <AlertDescription>
                 {response.data?.message || response.response?.data?.message || response?.data || response}
             </AlertDescription>

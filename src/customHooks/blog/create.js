@@ -41,8 +41,10 @@ export const CreateBlogHook = () => {
 
         try {
             const res = await createBlog(formData);
-            await refetch();
+            console.log(res);
+            
             setResponse(res);
+            await refetch();
             reset
             dispatch(hideLoader());
         } catch (error) {
